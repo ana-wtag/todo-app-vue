@@ -1,0 +1,29 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/i18n": "^7.3.1",
+    "@nuxtjs/style-resources": "^1.2.1",
+    "core-js": "^3.25.3",
+    "fibers": "^5.0.3",
+    "nuxt": "^2.15.8",
+    "vue": "^2.7.10",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vue/server-test-utils": "1",
+    "@vue/test-utils": "1",
+    "sass": "^1.57.1",
+    "sass-loader": "10",
+    "webpack": "^5.75.0"
+  }
+}
