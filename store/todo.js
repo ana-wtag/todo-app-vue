@@ -34,9 +34,9 @@ export const state = () => ({
       return state.todoList.find(item => item.id === taskId)
     },
     getCompletedTaskList(state) {
-      return state.todoList.find(item => item.done === true)
+      return state.todoList.filter(item => item.done === true)
     },
     getIncompletedTaskList(state) {
-      return state.todoList.find(item => item.done === false)
+      return state.todoList.filter(item => item.done === false)
     }
   }
