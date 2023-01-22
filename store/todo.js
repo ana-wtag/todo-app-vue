@@ -11,7 +11,6 @@ export const state = () => ({
         text: task.text,
         done: task.done,
         createdAt: task.createdAt,
-        markDoneAt: task.markDoneAt,
         completedIn: task.completedIn
       })
     },
