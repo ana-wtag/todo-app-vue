@@ -3,19 +3,17 @@
     <div class="nav-left">
       <div class="logo">
         <img :src="logo" />
-        <span>Todos</span>
+        <span>Todos {{ $t("test") }}</span>
       </div>
     </div>
     <div class="nav-right">
-      <input type="text" />  <!-- for search -->
+      <input type="text" />
+      <!-- for search -->
       <span class="search-icon">
         <img :src="searchIcon" />
       </span>
-      <select name="cars" id="cars">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="opel">Opel</option>
-        <option value="audi">Audi</option>
+      <select @change="switchLanguage">
+        <option  v-for="item in $i18n.locales" :key="item.code" :value="item.code">{{ item.name }}</option>
       </select>
     </div>
   </nav>
@@ -25,8 +23,13 @@
 export default {
   data() {
     return {
-      logo: require('@/assets/img/leaf.svg'),
-      searchIcon: require('@/assets/img/search.svg'),
+      logo: require("@/assets/img/leaf.svg"),
+      searchIcon: require("@/assets/img/search.svg"),
+    };
+  },
+  methods: {
+    switchLanguage(event) {
+      this.$i18n.setLocale(event.target.value)
     }
   }
 };
