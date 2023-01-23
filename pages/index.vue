@@ -1,21 +1,21 @@
 <template>
     <section class="container">
       <div class="section-head">
-        <h4>Add Task</h4>
+        <h4>{{ $t("Add Task") }}</h4>
       </div>
       <div class="btn-area">
-        <button @click="showForm = true">Create</button>
+        <button @click="showForm = true">{{ $t("Create") }}</button>
         <div class="filter-area">
-            <button>All</button>
-            <button>Incomplete</button>
-            <button>Complete</button>
+            <button>{{ $t("All") }}</button>
+            <button>{{ $t("Incomplete") }}</button>
+            <button>{{ $t("Complete") }}</button>
         </div>
       </div>
       <div class="task-area">
         <div class="card" v-if="showForm">
             <textarea v-model="todoText"></textarea>
             <div class="card-footer">
-                <button @click="addTask"> Add Task </button>
+                <button @click="addTask"> {{ $t("Add Task") }} </button>
                 <span class="delete-icon">
                     <svg
                     xmlns="http://www.w3.org/2000/svg"

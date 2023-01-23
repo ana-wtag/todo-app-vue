@@ -3,7 +3,7 @@
     <div class="nav-left">
       <div class="logo">
         <img :src="logo" />
-        <span>Todos {{ $t("test") }}</span>
+        <span>Todos</span>
       </div>
     </div>
     <div class="nav-right">
@@ -12,7 +12,7 @@
       <span class="search-icon">
         <img :src="searchIcon" />
       </span>
-      <select @change="switchLanguage">
+      <select @change="switchLanguage" :value="$i18n.defaultLocale">
         <option  v-for="item in $i18n.locales" :key="item.code" :value="item.code">{{ item.name }}</option>
       </select>
     </div>

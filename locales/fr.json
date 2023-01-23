@@ -1,3 +1,7 @@
 {
-  "test": "german"
+  "Create": "Créer",
+  "All": "Toute",
+  "Incomplete": "Incomplète",
+  "Complete": "Compléter",
+  "Add Task": "Ajouter une tâche"
 }

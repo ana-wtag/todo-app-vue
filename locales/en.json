@@ -1,3 +1,7 @@
 {
-  "test": "english"
+  "Create": "Create",
+  "All": "All",
+  "Incomplete": "Incomplete",
+  "Complete": "Complete",
+  "Add Task": "Add Task"
 }
