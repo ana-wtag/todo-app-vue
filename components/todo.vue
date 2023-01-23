@@ -3,7 +3,7 @@
     <textarea v-if="isEdit" v-model="todoItem.text"></textarea>
 
     <template v-if="!isEdit">
-      <div class="card-header" v-if="!isEdit || todoItem">
+      <div class="card-header">
         {{ todoItem.text }}
       </div>
       <div class="card-subheader">
@@ -64,10 +64,6 @@
 <script>
 export default {
   props: {
-    todoItem: {
-      required: true,
-      type: Object,
-    },
   },
   data() {
     return {
@@ -76,7 +72,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>
