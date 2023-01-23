@@ -45,12 +45,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     layout: 'default',
     computed: {
-        todoList() {
-            return this.$store.state.todo.todoList
-        }
+        ...mapState('todo', [
+            'todoList'
+        ])
     },
     methods: {
         addTask() {
@@ -64,7 +65,6 @@ export default {
             createdAt: createdAt,
             completedIn: null
            }
-           
            this.$store.commit('todo/addTask', todo)
            this.todoText = ''
            this.showForm = false
