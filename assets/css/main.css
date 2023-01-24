@@ -1,3 +1,6 @@
 .card-footer {
     display: flex;
   }
+  .delete-icon {
+    cursor: pointer;
+  }

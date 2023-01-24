@@ -2,10 +2,19 @@ export const state = () => ({
     todoList: [],
     taskId: 0
   })
+
+  export const actions = {
+    addTask({commit}, task) {
+      commit('incrementTaskId')
+      commit('addTask', task)
+    },
+    removeTask({getters,commit}, task) {
+      commit('removeTask', task)
+    },
+  }
   
   export const mutations = {
     addTask(state, task) {
-      state.taskId++
       state.todoList.push({
         id: state.taskId,
         text: task.text,
@@ -14,22 +23,24 @@ export const state = () => ({
         completedIn: task.completedIn
       })
     },
-    removeTask(state, taskId) {
-      const task = state.getters.getTaskById(taskId)
+    incrementTaskId(state) {
+      state.taskId++
+    },
+    removeTask(state, task) {
       state.todoList.splice(state.todoList.indexOf(task), 1)
     },
-    markDone(state, taskId) {
-      const task = state.getters.getTaskById(taskId)
-      task.done = true
-    },
-    editTask(state, updatedTask) {
-      const task = state.getters.getTaskById(task.id)
-      state.todoList.splice(state.list.indexOf(task), 1, updatedTask)
-    }
+    // markDone(state, getters, taskId) {
+    //   const task = getters.getTaskById(taskId)
+    //   task.done = true
+    // },
+    // editTask(state, getters, updatedTask) {
+    //   const task = getters.getTaskById(task.id)
+    //   state.todoList.splice(state.list.indexOf(task), 1, updatedTask)
+    // }
   }
 
   export const getters = {
-    getTaskById(state, taskId) {
+    getTaskById: (state) => (taskId) => {
       return state.todoList.find(item => item.id === taskId)
     },
     getCompletedTaskList(state) {
