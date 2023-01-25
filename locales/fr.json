@@ -3,5 +3,9 @@
   "All": "Toute",
   "Incomplete": "Incomplète",
   "Complete": "Compléter",
-  "Add Task": "Ajouter une tâche"
+  "Add Task": "Ajouter une tâche",
+  "Save" : "Sauver",
+  "Completed": "Complété",
+  "in": "dans",
+  "days": "journées"
 }

@@ -3,5 +3,9 @@
   "All": "All",
   "Incomplete": "Incomplete",
   "Complete": "Complete",
-  "Add Task": "Add Task"
+  "Add Task": "Add Task",
+  "Save": "Save",
+  "Completed": "Completed",
+  "in": "in",
+  "days": "days"
 }

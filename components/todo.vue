@@ -7,21 +7,29 @@
         {{ todoItem.text }}
       </div>
       <div class="card-subheader">
-        <span>Created At {{ todoItem.createdAt }}</span>
+        <span v-if="!todoItem.done">Created At {{ todoItem.createdAt }}</span>
+        <span v-else>Completed in {{ todoItem.createdAt }} day</span>
       </div>
     </template>
 
     <div class="card-footer">
-      <button v-if="isEdit" @click="onSave">Save</button>
-      <span class="tick-icon" v-else>
-        <img :src="tickIcon" />
-      </span>
-      <span class="pencil-icon">
-        <img :src="pencilIcon" />
-      </span>
-      <span class="delete-icon" @click="deleteTask">
-        <img :src="deleteIcon" />
-      </span>
+      <div class="card-footer-left">
+        <button v-if="isEdit" @click="onSave">{{ $t("Save") }}</button>
+        <span class="tick-icon" v-if="!todoItem.done" @click="markDone">
+          <img :src="tickIcon" />
+        </span>
+        <span class="pencil-icon" v-if="!todoItem.done || !isEdit">
+          <img :src="pencilIcon" />
+        </span>
+        <span class="delete-icon" @click="deleteTask">
+          <img :src="deleteIcon" />
+        </span>
+      </div>
+      <div class="card-footer-right">
+        <span class="completed-badge" v-if="todoItem.done">{{
+          $t(`Completed in ${todoItem.completedIn} days`)
+        }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -38,7 +46,7 @@ export default {
   //   computed: {
   //   ...mapGetters("todo", ["getTaskById"]),
   // },
-  
+
   data() {
     return {
       isEdit: false,
@@ -50,8 +58,17 @@ export default {
   methods: {
     deleteTask() {
       this.$store.dispatch("todo/removeTask", this.todoItem);
+    },
+    markDone() {
+      this.$store.dispatch("todo/markDone", this.todoItem.id)
     }
   },
-  
 };
 </script>
+
+<style lang="scss" scoped>
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
