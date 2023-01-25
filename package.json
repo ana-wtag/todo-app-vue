@@ -18,6 +18,7 @@
     "date-fns": "^2.29.3",
     "fibers": "^5.0.3",
     "nuxt": "^2.15.8",
+    "uuidv4": "^6.2.13",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.14"

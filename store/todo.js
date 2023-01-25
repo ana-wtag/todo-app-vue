@@ -1,6 +1,7 @@
+import { v4 as uuidv4 } from 'uuid'
 export const state = () => ({
     todoList: [],
-    taskId: 0
+    taskId: ''
   })
 
   export const actions = {
@@ -29,7 +30,7 @@ export const state = () => ({
       })
     },
     incrementTaskId(state) {
-      state.taskId++
+      state.taskId = uuidv4()
     },
     removeTask(state, task) {
       state.todoList.splice(state.todoList.indexOf(task), 1)
