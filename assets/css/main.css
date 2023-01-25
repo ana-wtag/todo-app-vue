@@ -1,6 +1,6 @@
 .card-footer {
     display: flex;
   }
-  .delete-icon {
+  .delete-icon, .tick-icon, .pencil-icon {
     cursor: pointer;
   }

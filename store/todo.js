@@ -11,11 +11,11 @@ export const state = () => ({
     removeTask({commit}, task) {
       commit('removeTask', task)
     },
-    markDone({commit, getters}, taskId) {
-      debugger
-      const task = getters.getTaskById(taskId)
-      commit('markDone', task)
-    },
+    markDone({commit, getters}, task) {
+      const item = getters.getTaskById(task.id)
+      const completedIn = task.completedIn
+      commit('markDone', {item, completedIn})
+    }
   }
   
   export const mutations = {
@@ -34,13 +34,11 @@ export const state = () => ({
     removeTask(state, task) {
       state.todoList.splice(state.todoList.indexOf(task), 1)
     },
-    markDone(task) {
-      task.done = true
+    markDone(state, {item, completedIn}) {
+      item.done = true
+      item.completedIn = completedIn
     },
-    // editTask(state, getters, updatedTask) {
-    //   const task = getters.getTaskById(task.id)
-    //   state.todoList.splice(state.list.indexOf(task), 1, updatedTask)
-    // }
+    
   }
 
   export const getters = {

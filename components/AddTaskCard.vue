@@ -17,6 +17,7 @@ export default {
     return {
       todoText: "",
       deleteIcon: require("@/assets/img/delete.svg"),
+      
     };
   },
   computed: {
@@ -27,7 +28,7 @@ export default {
       if (!this.todoText) {
         return;
       }
-      const createdAt = new Date().toISOString().substring(0, 10);
+      const createdAt = new Date()
       const todo = {
         text: this.todoText,
         done: false,
@@ -36,7 +37,7 @@ export default {
       };
       this.$store.dispatch("todo/addTask", todo);
       this.todoText = "";
-      this.$store.commit('toggleForm', false)
+      //this.$store.commit('toggleForm', false)
     },
     clearField() {
       this.todoText = "";
