@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   props: {
     todoItem: {
@@ -35,9 +34,6 @@ export default {
       type: Object,
     },
   },
-  //   computed: {
-  //   ...mapGetters("todo", ["getTaskById"]),
-  // },
   
   data() {
     return {

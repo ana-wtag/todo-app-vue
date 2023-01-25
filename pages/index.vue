@@ -4,29 +4,33 @@
       <h4>{{ $t("Add Task") }}</h4>
     </div>
     <div class="btn-area">
-      <button @click="renderForm">{{ $t("Create") }}</button>
+      <button @click="showForm = true">{{ $t("Create") }}</button>
       <div class="filter-area">
         <FilterButtons />
       </div>
     </div>
     <div class="task-area">
-      <AddTaskCard />
+      <AddTaskCard :showForm="showForm" @toggleForm="toggleForm"/>
       <ToDo v-for="todo in todoList" :key="todo.id" :todoItem="todo" />
     </div>
   </section>
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState } from "vuex";
 export default {
   layout: "default",
   computed: {
-    ...mapState("todo", ["todoList"]),
-    ...mapMutations(["toggleForm"])
+    ...mapState("todo", ["todoList"])
+  },
+  data() {
+    return {
+      showForm: false
+    }
   },
   methods: {
-    renderForm() {
-        this.$store.commit('toggleForm', true)
+    toggleForm(value) {
+      this.showForm = value
     }
   }
 };

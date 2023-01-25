@@ -28,15 +28,7 @@ export const state = () => ({
     },
     removeTask(state, task) {
       state.todoList.splice(state.todoList.indexOf(task), 1)
-    },
-    // markDone(state, getters, taskId) {
-    //   const task = getters.getTaskById(taskId)
-    //   task.done = true
-    // },
-    // editTask(state, getters, updatedTask) {
-    //   const task = getters.getTaskById(task.id)
-    //   state.todoList.splice(state.list.indexOf(task), 1, updatedTask)
-    // }
+    }
   }
 
   export const getters = {

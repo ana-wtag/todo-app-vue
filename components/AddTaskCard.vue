@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 export default {
     data() {
     return {
@@ -19,8 +18,11 @@ export default {
       deleteIcon: require("@/assets/img/delete.svg"),
     };
   },
-  computed: {
-    ...mapState(["showForm"]),
+  props: {
+    showForm: {
+      type: Boolean,
+      required: true
+    }
   },
   methods: {
     addTask() {
@@ -36,12 +38,11 @@ export default {
       };
       this.$store.dispatch("todo/addTask", todo);
       this.todoText = "";
-      this.$store.commit('toggleForm', false)
     },
     clearField() {
       this.todoText = "";
-      this.$store.commit('toggleForm', false)
-    },
+      this.$emit('toggleForm', false)
+    }
   }
 }
 </script>
