@@ -7,9 +7,13 @@ export const state = () => ({
 
   export const actions = {
     addTask({commit}, task) {
-      //commit('showLoader')
+      
       commit('incrementTaskId')
-      commit('addTask', task)
+      setTimeout(()=> {
+        commit('toggleLoad')
+        commit('addTask', task)
+      }, 1000)
+      commit('toggleLoad')
     },
     removeTask({getters,commit}, task) {
       commit('removeTask', task)
@@ -23,7 +27,8 @@ export const state = () => ({
         text: task.text,
         done: task.done,
         createdAt: task.createdAt,
-        completedIn: task.completedIn
+        completedIn: task.completedIn,
+        loading: false
       })
     },
     incrementTaskId(state) {
@@ -31,6 +36,10 @@ export const state = () => ({
     },
     removeTask(state, task) {
       state.todoList.splice(state.todoList.indexOf(task), 1)
+    },
+    toggleLoad(state) {
+      
+      state.loading = !state.loading
     }
   }
 

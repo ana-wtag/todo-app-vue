@@ -1,5 +1,6 @@
 <template>
   <div class="card">
+    <CardLoader v-if="todoItem.loading"/>
     <textarea v-if="isEdit" v-model="todoItem.text"></textarea>
 
     <template v-else>
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
 export default {
   props: {
     todoItem: {
@@ -34,7 +36,12 @@ export default {
       type: Object,
     },
   },
-  
+  computed: {
+    ...mapState("todo", ["loading"]),
+    ...mapGetters([
+      'getTaskById'
+    ])
+  },
   data() {
     return {
       isEdit: false,

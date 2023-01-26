@@ -1,5 +1,6 @@
 <template>
   <div class="card" v-if="showForm">
+    <CardLoader v-if="loading"/>
     <textarea v-model="todoText"></textarea>
     <div class="error-msg" v-if="showError">{{ $t("Title is required!") }}</div>
     <div class="card-footer">
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
     data() {
     return {
@@ -19,6 +21,9 @@ export default {
       showError: false,
       deleteIcon: require("@/assets/img/delete.svg")
     };
+  },
+  computed: {
+    ...mapState("todo", ["loading"])
   },
   props: {
     showForm: {
@@ -51,3 +56,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.card-footer {
+  bottom: 14px;
+}
+</style>

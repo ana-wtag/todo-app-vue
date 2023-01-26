@@ -38,14 +38,14 @@ export default {
   i18n: {
     locales: [
       {
-        code: 'fr',
-        file: 'fr.json',
-        name: 'French'
-      },
-      {
         code: 'en',
         file: 'en.json',
         name: 'English'
+      },
+      {
+        code: 'fr',
+        file: 'fr.json',
+        name: 'French'
       },
     ],
     langDir: 'locales/',
