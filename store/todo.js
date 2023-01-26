@@ -9,6 +9,11 @@ export const state = () => ({
       commit('incrementTaskId')
       commit('addTask', task)
     },
+    editTask({commit, getters}, task) {
+      const item = getters.getTaskById(task.id)
+      const updatedText = task.updatedText
+      commit('editTask', {item, updatedText})
+    },
     removeTask({commit}, task) {
       commit('removeTask', task)
     },
@@ -35,11 +40,13 @@ export const state = () => ({
     removeTask(state, task) {
       state.todoList.splice(state.todoList.indexOf(task), 1)
     },
-    markDone(state, {item, completedIn}) {
+    markDone(state, {item, ...completedIn}) {
       item.done = true
       item.completedIn = completedIn
     },
-    
+    editTask(state, {item, ...taskText}) {
+      item.text = taskText
+    }
   }
 
   export const getters = {

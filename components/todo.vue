@@ -17,7 +17,7 @@
         <span class="tick-icon" v-if="!todoItem.done" @click="markDone">
           <img :src="tickIcon" />
         </span>
-        <span class="pencil-icon" v-if="!todoItem.done && !isEdit">
+        <span class="pencil-icon" v-if="!todoItem.done && !isEdit" @click="editTask">
           <img :src="pencilIcon" />
         </span>
         <span class="delete-icon" @click="deleteTask">
@@ -26,7 +26,7 @@
       </div>
       <div class="card-footer-right">
         <span class="completed-badge" v-if="todoItem.done">{{
-          $t(`Completed in ${todoItem.completedIn} days`)
+          $t(`Completed in ${todoItem.completedIn} ago`)
         }}</span>
       </div>
     </div>
@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import differenceInDays from 'date-fns/differenceInDays'
 import format from 'date-fns/format'
+import formatDistance from 'date-fns/formatDistance'
 export default {
   props: {
     todoItem: {
@@ -44,7 +44,6 @@ export default {
     },
   },
 
-  
   data() {
     return {
       formatDate: format,
@@ -59,12 +58,18 @@ export default {
       this.$store.dispatch("todo/removeTask", this.todoItem);
     },
     markDone() {
-      const completedIn = differenceInDays(new Date(), this.todoItem.createdAt)
+      const completedIn = formatDistance(new Date(), this.todoItem.createdAt)
       const task = {
         id: this.todoItem.id,
         completedIn: completedIn
       }
       this.$store.dispatch("todo/markDone", task)
+    },
+    editTask() {
+      this.isEdit = true
+    },
+    onSave() {
+      this.$store.dispatch("todo/editTask", task)
     }
   },
 };
