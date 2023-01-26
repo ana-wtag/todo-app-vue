@@ -60,5 +60,6 @@ export default {
 <style lang="scss" scoped>
 .card-footer {
   bottom: 14px;
+  justify-content: flex-start;
 }
 </style>

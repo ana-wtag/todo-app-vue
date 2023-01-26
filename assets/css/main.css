@@ -41,9 +41,10 @@ textarea {
 }
 .card-footer {
   display: flex;
-  display: flex;
   position: absolute;
   bottom: 22px;
+  justify-content: space-between;
+  width: 93%;
 }
 .delete-icon,
 .tick-icon,

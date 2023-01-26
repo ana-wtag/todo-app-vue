@@ -27,7 +27,7 @@
       </div>
       <div class="card-footer-right">
         <span class="completed-badge" v-if="todoItem.done">{{
-          $t(`Completed in ${todoItem.completedIn} days`)
+          $t(`Completed ${todoItem.completedIn} ago`)
         }}</span>
       </div>
     </div>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import differenceInDays from 'date-fns/differenceInDays'
+import {formatDistance} from 'date-fns'
 import format from 'date-fns/format'
 import { mapState, mapGetters } from "vuex";
 export default {
@@ -65,7 +65,7 @@ export default {
       this.$store.dispatch("todo/removeTask", this.todoItem);
     },
     markDone() {
-      const completedIn = differenceInDays(new Date(), this.todoItem.createdAt)
+      const completedIn = formatDistance(new Date(), this.todoItem.createdAt)
       const task = {
         id: this.todoItem.id,
         completedIn: completedIn
@@ -77,10 +77,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .card-footer {
-        display: flex;
-        justify-content: space-between;
-    }
+    // .card-footer {
+    //     display: flex;
+    //     justify-content: space-between;
+    // }
     .mark-done {
       text-decoration: line-through;
       color: #0BC375;
