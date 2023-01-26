@@ -3,7 +3,7 @@
     <textarea v-model="todoText"></textarea>
     <div class="error-msg" v-if="showError">{{ $t("Title is required!") }}</div>
     <div class="card-footer">
-      <button @click="addTask">{{ $t("Add Task") }}</button>
+      <button @click="addTask" class="mr-19">{{ $t("Add Task") }}</button>
       <span class="delete-icon" @click="clearField">
         <img :src="deleteIcon" />
       </span>
@@ -17,8 +17,7 @@ export default {
     return {
       todoText: "",
       showError: false,
-      deleteIcon: require("@/assets/img/delete.svg"),
-
+      deleteIcon: require("@/assets/img/delete.svg")
     };
   },
   props: {

@@ -13,13 +13,13 @@
 
     <div class="card-footer">
       <button v-if="isEdit" @click="onSave">Save</button>
-      <span class="tick-icon" v-else>
+      <span class="tick-icon mr-19" v-else>
         <img :src="tickIcon" />
       </span>
-      <span class="pencil-icon">
+      <span class="pencil-icon mr-19">
         <img :src="pencilIcon" />
       </span>
-      <span class="delete-icon" @click="deleteTask">
+      <span class="delete-icon mr-19" @click="deleteTask">
         <img :src="deleteIcon" />
       </span>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+    <section>
     <div class="section-head">
       <h4>{{ $t("Add Task") }}</h4>
     </div>
@@ -47,5 +47,6 @@ export default {
 }
 .task-area {
   display: flex;
+  flex-wrap: wrap;
 }
 </style>

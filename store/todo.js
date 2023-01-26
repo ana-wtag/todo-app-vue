@@ -1,11 +1,13 @@
 import { v4 as uuidv4 } from 'uuid'
 export const state = () => ({
     todoList: [],
-    taskId: ''
+    taskId: '',
+    loading: false
   })
 
   export const actions = {
     addTask({commit}, task) {
+      //commit('showLoader')
       commit('incrementTaskId')
       commit('addTask', task)
     },
