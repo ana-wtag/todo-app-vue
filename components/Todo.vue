@@ -1,5 +1,6 @@
 <template>
   <div class="card">
+    <CardLoader v-if="todoItem.loading"/>
     <textarea v-if="isEdit" v-model="todoItem.text"></textarea>
 
     <template v-else>
@@ -14,19 +15,19 @@
     <div class="card-footer">
       <div class="card-footer-left">
         <button v-if="isEdit" @click="onSave">{{ $t("Save") }}</button>
-        <span class="tick-icon" v-if="!todoItem.done" @click="markDone">
+        <span class="tick-icon mr-19" v-if="!todoItem.done" @click="markDone">
           <img :src="tickIcon" />
         </span>
-        <span class="pencil-icon" v-if="!todoItem.done && !isEdit" @click="editTask">
+        <span class="pencil-icon mr-19" v-if="!todoItem.done && !isEdit" @click="editTask">
           <img :src="pencilIcon" />
         </span>
-        <span class="delete-icon" @click="deleteTask">
+        <span class="delete-icon mr-19" @click="deleteTask">
           <img :src="deleteIcon" />
         </span>
       </div>
       <div class="card-footer-right">
         <span class="completed-badge" v-if="todoItem.done">{{
-          $t(`Completed in ${todoItem.completedIn} ago`)
+          $t(`Completed ${todoItem.completedIn} ago`)
         }}</span>
       </div>
     </div>
@@ -34,8 +35,9 @@
 </template>
 
 <script>
+import {formatDistance} from 'date-fns'
 import format from 'date-fns/format'
-import formatDistance from 'date-fns/formatDistance'
+import { mapState, mapGetters } from "vuex";
 export default {
   props: {
     todoItem: {
@@ -43,7 +45,12 @@ export default {
       type: Object,
     },
   },
-
+  computed: {
+    ...mapState("todo", ["loading"]),
+    ...mapGetters([
+      'getTaskById'
+    ])
+  },
   data() {
     return {
       formatDate: format,
@@ -76,10 +83,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .card-footer {
-        display: flex;
-        justify-content: space-between;
-    }
+    // .card-footer {
+    //     display: flex;
+    //     justify-content: space-between;
+    // }
     .mark-done {
       text-decoration: line-through;
       color: #0BC375;

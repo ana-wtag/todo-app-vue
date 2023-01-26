@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+    <section>
     <div class="section-head">
       <h4>{{ $t("Add Task") }}</h4>
     </div>
@@ -11,7 +11,7 @@
     </div>
     <div class="task-area">
       <AddTaskCard :showForm="showForm" @toggleForm="toggleForm"/>
-      <ToDo v-for="todo in todoList" :key="todo.id" :todoItem="todo" />
+      <Todo v-for="todo in todoList" :key="todo.id" :todoItem="todo" />
     </div>
   </section>
 </template>
@@ -47,5 +47,6 @@ export default {
 }
 .task-area {
   display: flex;
+  flex-wrap: wrap;
 }
 </style>

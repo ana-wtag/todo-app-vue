@@ -12,10 +12,10 @@
       <span class="search-icon">
         <img :src="searchIcon" />
       </span>
-      <select @change="switchLanguage" :value="$i18n.defaultLocale">
-        <option  v-for="item in $i18n.locales" :key="item.code" :value="item.code">{{ item.name }}</option>
+      <select @change="switchLanguage">
+        <option  :selected="item.code === $i18n.defaultLocale" v-for="item in $i18n.locales" :key="item.code" :value="item.code">{{ item.name }}</option>
       </select>
-    </div>
+    </div> 
   </nav>
 </template>
 
