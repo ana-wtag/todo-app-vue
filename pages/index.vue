@@ -21,7 +21,7 @@
                 </span> 
             </div>
         </div>
-        <ToDo
+        <Todo
             v-for="todo in todoList"
             :key="todo.id"
             :todoItem="todo"
