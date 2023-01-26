@@ -1,13 +1,19 @@
 import { v4 as uuidv4 } from 'uuid'
 export const state = () => ({
     todoList: [],
-    taskId: ''
+    taskId: '',
+    loading: false
   })
 
   export const actions = {
     addTask({commit}, task) {
+      
       commit('incrementTaskId')
-      commit('addTask', task)
+      setTimeout(()=> {
+        commit('toggleLoad')
+        commit('addTask', task)
+      }, 1000)
+      commit('toggleLoad')
     },
     removeTask({commit}, task) {
       commit('removeTask', task)
@@ -26,7 +32,8 @@ export const state = () => ({
         text: task.text,
         done: task.done,
         createdAt: task.createdAt,
-        completedIn: task.completedIn
+        completedIn: task.completedIn,
+        loading: false
       })
     },
     incrementTaskId(state) {
@@ -40,6 +47,10 @@ export const state = () => ({
       item.completedIn = completedIn
     },
     
+    toggleLoad(state) {
+      
+      state.loading = !state.loading
+    }
   }
 
   export const getters = {
