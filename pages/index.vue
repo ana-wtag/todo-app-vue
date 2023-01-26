@@ -11,7 +11,7 @@
     </div>
     <div class="task-area">
       <AddTaskCard :showForm="showForm" @toggleForm="toggleForm"/>
-      <ToDo v-for="todo in todoList" :key="todo.id" :todoItem="todo" />
+      <Todo v-for="todo in todoList" :key="todo.id" :todoItem="todo" />
     </div>
   </section>
 </template>
