@@ -1,14 +1,18 @@
 <template>
   <div class="card">
-    <CardLoader v-if="todoItem.loading"/>
-    <textarea v-if="isEdit" v-model="todoItem.text"></textarea>
-
+    <CardLoader v-if="todoItem.loading" />
+    <template v-if="isEdit">
+      <textarea v-model="taskText"></textarea>
+      <div class="error-msg" v-if="showError">
+        {{ $t("Title is required!") }}
+      </div>
+    </template>
     <template v-else>
       <div class="card-header" :class="{ 'mark-done': todoItem.done }">
         {{ todoItem.text }}
       </div>
       <div class="card-subheader">
-        <span>Created At {{ formatDate(todoItem.createdAt, 'dd.MM.yy') }}</span>
+        <span>Created At {{ formatDate(todoItem.createdAt, "dd.MM.yy") }}</span>
       </div>
     </template>
 
@@ -18,7 +22,11 @@
         <span class="tick-icon mr-19" v-if="!todoItem.done" @click="markDone">
           <img :src="tickIcon" />
         </span>
-        <span class="pencil-icon mr-19" v-if="!todoItem.done && !isEdit" @click="editTask">
+        <span
+          class="pencil-icon mr-19"
+          v-if="!todoItem.done && !isEdit"
+          @click="editTask"
+        >
           <img :src="pencilIcon" />
         </span>
         <span class="delete-icon mr-19" @click="deleteTask">
@@ -35,8 +43,8 @@
 </template>
 
 <script>
-import {formatDistance} from 'date-fns'
-import format from 'date-fns/format'
+import { formatDistance } from "date-fns";
+import format from "date-fns/format";
 import { mapState, mapGetters } from "vuex";
 export default {
   props: {
@@ -47,14 +55,14 @@ export default {
   },
   computed: {
     ...mapState("todo", ["loading"]),
-    ...mapGetters([
-      'getTaskById'
-    ])
+    ...mapGetters(["getTaskById"]),
   },
   data() {
     return {
       formatDate: format,
       isEdit: false,
+      showError: false,
+      taskText: '',
       tickIcon: require("@/assets/img/tick.svg"),
       pencilIcon: require("@/assets/img/pencil.svg"),
       deleteIcon: require("@/assets/img/delete.svg"),
@@ -62,33 +70,51 @@ export default {
   },
   methods: {
     deleteTask() {
-      this.$store.dispatch("todo/removeTask", this.todoItem);
+      if (this.isEdit) {
+        this.isEdit = false;
+        this.showError = false
+      } else {
+        this.$store.dispatch("todo/removeTask", this.todoItem);
+      }
     },
     markDone() {
-      const completedIn = formatDistance(new Date(), this.todoItem.createdAt)
+      if (this.isEdit) {
+        this.onSave();
+        if(this.showError) {
+          return
+        }
+      }
+      const completedIn = formatDistance(new Date(), this.todoItem.createdAt);
       const task = {
         id: this.todoItem.id,
-        completedIn: completedIn
-      }
-      this.$store.dispatch("todo/markDone", task)
+        completedIn: completedIn,
+      };
+      this.$store.dispatch("todo/markDone", task);
     },
     editTask() {
-      this.isEdit = true
+      this.taskText = this.todoItem.text
+      this.isEdit = true;
     },
     onSave() {
-      this.$store.dispatch("todo/editTask", task)
-    }
+      if (!this.taskText) {
+        this.showError = true;
+        return;
+      }
+      const task = {
+        id: this.todoItem.id,
+        updatedText: this.taskText,
+      };
+      this.$store.dispatch("todo/editTask", task);
+      this.isEdit = false;
+      this.showError = false;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-    // .card-footer {
-    //     display: flex;
-    //     justify-content: space-between;
-    // }
-    .mark-done {
-      text-decoration: line-through;
-      color: #0BC375;
-    }
+.mark-done {
+  text-decoration: line-through;
+  color: #0bc375;
+}
 </style>
