@@ -11,23 +11,18 @@
     </div>
     <div class="task-area">
       <AddTaskCard :showForm="showForm" @toggleForm="toggleForm"/>
-      <Todo v-for="todo in list" :key="todo.id" :todoItem="todo" />
+      <Todo v-for="todo in todoList" :key="todo.id" :todoItem="todo" />
     </div>
   </section>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import lodash from "lodash";
 
 export default {
   layout: "default",
   computed: {
-    ...mapState("todo", ["todoList"]),
-    list () {
-      console.log(lodash.cloneDeep(this.todoList))
-      return lodash.cloneDeep(this.todoList)
-    }
+    ...mapState("todo", ["todoList"])
   },
   data() {
     return {
