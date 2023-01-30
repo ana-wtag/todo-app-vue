@@ -15,13 +15,13 @@
     <div class="card-footer">
       <button v-if="isEdit" @click="onSave">Save</button>
       <span class="tick-icon mr-19" v-else>
-        <img :src="tickIcon" />
+        <TickIcon />
       </span>
       <span class="pencil-icon mr-19">
-        <img :src="pencilIcon" />
+        <PencilIcon />
       </span>
-      <span class="delete-icon mr-19" @click="deleteTask">
-        <img :src="deleteIcon" />
+      <span class="delete-icon mr-19">
+        <DeleteIcon @click="deleteTask"/>
       </span>
     </div>
   </div>
@@ -29,7 +29,15 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import TickIcon from "@/assets/img/tick.svg?inline";
+import PencilIcon from "@/assets/img/pencil.svg?inline";
+import DeleteIcon from "@/assets/img/delete.svg?inline";
 export default {
+  components: {
+    TickIcon,
+    PencilIcon,
+    DeleteIcon
+  },
   props: {
     todoItem: {
       required: true,
@@ -45,9 +53,9 @@ export default {
   data() {
     return {
       isEdit: false,
-      tickIcon: require("@/assets/img/tick.svg"),
-      pencilIcon: require("@/assets/img/pencil.svg"),
-      deleteIcon: require("@/assets/img/delete.svg"),
+      // tickIcon: require("@/assets/img/tick.svg"),
+      // pencilIcon: require("@/assets/img/pencil.svg"),
+      // deleteIcon: require("@/assets/img/delete.svg"),
     };
   },
   methods: {

@@ -5,21 +5,23 @@
     <div class="error-msg" v-if="showError">{{ $t("Title is required!") }}</div>
     <div class="card-footer">
       <button @click="addTask" class="mr-19">{{ $t("Add Task") }}</button>
-      <span class="delete-icon" @click="clearField">
-        <img :src="deleteIcon" />
-      </span>
+      <DeleteIcon class="delete-icon" @click="clearField"/>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import DeleteIcon from "@/assets/img/delete.svg?inline";
+
 export default {
+  components: {
+    DeleteIcon
+  },
     data() {
     return {
       todoText: "",
-      showError: false,
-      deleteIcon: require("@/assets/img/delete.svg")
+      showError: false
     };
   },
   computed: {
