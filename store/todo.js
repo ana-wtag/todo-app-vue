@@ -14,8 +14,13 @@ export const actions = {
     }, 1000);
     commit("toggleLoad");
   },
-  removeTask({ getters, commit }, task) {
+  removeTask({ commit }, task) {
     commit("removeTask", task);
+  },
+  markDone({ commit, getters }, task) {
+    const item = getters.getTaskById(task.id);
+    const completedIn = task.completedIn;
+    commit("markDone", { item, completedIn });
   },
 };
 
@@ -36,11 +41,15 @@ export const mutations = {
   removeTask(state, task) {
     state.todoList.splice(state.todoList.indexOf(task), 1);
   },
+  markDone(state, { item, completedIn }) {
+    item.done = true;
+    item.completedIn = completedIn;
+  },
+
   toggleLoad(state) {
     state.loading = !state.loading;
   },
 };
-
 export const getters = {
   getTaskById: (state) => (taskId) => {
     return state.todoList.find((item) => item.id === taskId);

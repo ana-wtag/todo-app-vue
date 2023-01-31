@@ -4,30 +4,44 @@
     <textarea v-if="isEdit" v-model="todoItem.text"></textarea>
 
     <template v-else>
-      <div class="card-header">
+      <div class="card-header" :class="{ 'mark-done': todoItem.done }">
         {{ todoItem.text }}
       </div>
       <div class="card-subheader">
-        <span>Created At {{ todoItem.createdAt }}</span>
+        <span>Created At {{ formatDate(todoItem.createdAt, 'dd.MM.yy') }}</span>
       </div>
     </template>
 
     <div class="card-footer">
-      <button v-if="isEdit" @click="onSave">Save</button>
-      <span class="tick-icon mr-19" v-else>
-        <TickIcon />
-      </span>
-      <span class="pencil-icon mr-19">
-        <PencilIcon />
-      </span>
-      <span class="delete-icon mr-19">
-        <DeleteIcon @click="deleteTask"/>
-      </span>
+      <div class="card-footer-left">
+        <button v-if="isEdit" @click="onSave">{{ $t("Save") }}</button>
+
+        <template v-if="!todoItem.done">
+            <span class="tick-icon mr-19" @click="markDone">
+            <TickIcon />
+          </span>
+          <span class="pencil-icon mr-19" v-if="!isEdit">
+            <PencilIcon />
+          </span>
+        </template>
+        
+        <span class="delete-icon mr-19" @click="deleteTask">
+          <DeleteIcon />
+        </span>
+      </div>
+      <div class="card-footer-right">
+        <span class="completed-badge" v-if="todoItem.done">{{
+          completedTime
+        }}</span>
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
+import {formatDistance} from 'date-fns'
+import format from 'date-fns/format'
 import { mapState, mapGetters } from "vuex";
 import TickIcon from "@/assets/img/tick.svg?inline";
 import PencilIcon from "@/assets/img/pencil.svg?inline";
@@ -48,21 +62,36 @@ export default {
     ...mapState("todo", ["loading"]),
     ...mapGetters([
       'getTaskById'
-    ])
+    ]),
+    completedTime() {
+      return this.$t("Completed") + ` ${this.todoItem.completedIn} `+ this.$t("ago")
+    }
   },
   data() {
     return {
+      formatDate: format,
       isEdit: false,
-      // tickIcon: require("@/assets/img/tick.svg"),
-      // pencilIcon: require("@/assets/img/pencil.svg"),
-      // deleteIcon: require("@/assets/img/delete.svg"),
     };
   },
   methods: {
     deleteTask() {
       this.$store.dispatch("todo/removeTask", this.todoItem);
+    },
+    markDone() {
+      const completedIn = formatDistance(new Date(), this.todoItem.createdAt)
+      const task = {
+        id: this.todoItem.id,
+        completedIn: completedIn
+      }
+      this.$store.dispatch("todo/markDone", task)
     }
   },
-  
 };
 </script>
+
+<style lang="scss" scoped>
+    .mark-done {
+      text-decoration: line-through;
+      color: #0BC375;
+    }
+</style>

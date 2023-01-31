@@ -43,7 +43,11 @@ textarea {
   display: flex;
   position: absolute;
   bottom: 22px;
+  justify-content: space-between;
+  width: 93%;
 }
-.delete-icon {
+.delete-icon,
+.tick-icon,
+.pencil-icon {
   cursor: pointer;
 }

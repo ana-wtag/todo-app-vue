@@ -39,7 +39,7 @@ export default {
         this.showError = true
         return
       }
-      const createdAt = new Date().toISOString().substring(0, 10);
+      const createdAt = new Date()
       const todo = {
         text: this.todoText,
         done: false,
@@ -62,5 +62,6 @@ export default {
 <style lang="scss" scoped>
 .card-footer {
   bottom: 14px;
+  justify-content: flex-start;
 }
 </style>
