@@ -30,7 +30,8 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/svg'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -38,14 +39,14 @@ export default {
   i18n: {
     locales: [
       {
-        code: 'fr',
-        file: 'fr.json',
-        name: 'French'
-      },
-      {
         code: 'en',
         file: 'en.json',
         name: 'English'
+      },
+      {
+        code: 'fr',
+        file: 'fr.json',
+        name: 'French'
       },
     ],
     langDir: 'locales/',

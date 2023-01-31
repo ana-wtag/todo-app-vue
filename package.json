@@ -12,11 +12,13 @@
   "dependencies": {
     "@nuxtjs/i18n": "^7.3.1",
     "@nuxtjs/style-resources": "^1.2.1",
+    "@nuxtjs/svg": "^0.4.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^29.3.1",
     "core-js": "^3.25.3",
     "fibers": "^5.0.3",
     "nuxt": "^2.15.8",
+    "uuidv4": "^6.2.13",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.14"

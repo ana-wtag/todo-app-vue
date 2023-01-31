@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <section class="container">
         <header>
             <NavBar />
         </header>
         <main>
             <Nuxt />
         </main>
-    </div>
+    </section>
 </template>
 
 <script>
