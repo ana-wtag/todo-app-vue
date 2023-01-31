@@ -5,7 +5,7 @@
     <div class="error-msg" v-if="showError">{{ $t("Title is required!") }}</div>
     <div class="card-footer">
       <button @click="addTask" class="mr-19">{{ $t("Add Task") }}</button>
-      <DeleteIcon class="delete-icon" @click="clearField"/>
+      <DeleteIcon class="delete-icon" @click="onDelete"/>
     </div>
   </div>
 </template>
@@ -50,7 +50,7 @@ export default {
       this.todoText = "";
       this.showError = false
     },
-    clearField() {
+    onDelete() {
       this.todoText = "";
       this.$emit('toggleForm', false)
       this.showError = false
