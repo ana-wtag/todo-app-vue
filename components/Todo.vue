@@ -16,13 +16,13 @@
       <div class="card-footer-left">
         <button v-if="isEdit" @click="onSave">{{ $t("Save") }}</button>
         <span class="tick-icon mr-19" v-if="!todoItem.done" @click="markDone">
-          <img :src="tickIcon" />
+          <TickIcon />
         </span>
         <span class="pencil-icon mr-19" v-if="!todoItem.done && !isEdit">
-          <img :src="pencilIcon" />
+          <PencilIcon />
         </span>
         <span class="delete-icon mr-19" @click="deleteTask">
-          <img :src="deleteIcon" />
+          <DeleteIcon />
         </span>
       </div>
       <div class="card-footer-right">
@@ -30,6 +30,7 @@
           $t(`Completed ${todoItem.completedIn} ago`)
         }}</span>
       </div>
+
     </div>
   </div>
 </template>
@@ -38,7 +39,15 @@
 import {formatDistance} from 'date-fns'
 import format from 'date-fns/format'
 import { mapState, mapGetters } from "vuex";
+import TickIcon from "@/assets/img/tick.svg?inline";
+import PencilIcon from "@/assets/img/pencil.svg?inline";
+import DeleteIcon from "@/assets/img/delete.svg?inline";
 export default {
+  components: {
+    TickIcon,
+    PencilIcon,
+    DeleteIcon
+  },
   props: {
     todoItem: {
       required: true,
@@ -55,9 +64,6 @@ export default {
     return {
       formatDate: format,
       isEdit: false,
-      tickIcon: require("@/assets/img/tick.svg"),
-      pencilIcon: require("@/assets/img/pencil.svg"),
-      deleteIcon: require("@/assets/img/delete.svg"),
     };
   },
   methods: {
@@ -77,10 +83,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    // .card-footer {
-    //     display: flex;
-    //     justify-content: space-between;
-    // }
     .mark-done {
       text-decoration: line-through;
       color: #0BC375;
