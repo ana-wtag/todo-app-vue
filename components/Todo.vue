@@ -27,7 +27,7 @@
       </div>
       <div class="card-footer-right">
         <span class="completed-badge" v-if="todoItem.done">{{
-          $t(`Completed ${todoItem.completedIn} ago`)
+          completedTime
         }}</span>
       </div>
 
@@ -58,7 +58,10 @@ export default {
     ...mapState("todo", ["loading"]),
     ...mapGetters([
       'getTaskById'
-    ])
+    ]),
+    completedTime() {
+      return this.$t("Completed") + ` ${this.todoItem.completedIn} `+ this.$t("ago")
+    }
   },
   data() {
     return {
