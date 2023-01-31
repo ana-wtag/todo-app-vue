@@ -19,25 +19,26 @@
     <div class="card-footer">
       <div class="card-footer-left">
         <button v-if="isEdit" @click="onSave">{{ $t("Save") }}</button>
-        <span class="tick-icon mr-19" v-if="!todoItem.done" @click="markDone">
-          <img :src="tickIcon" />
-        </span>
-        <span
-          class="pencil-icon mr-19"
-          v-if="!todoItem.done && !isEdit"
-          @click="editTask"
-        >
-          <img :src="pencilIcon" />
-        </span>
+
+        <template v-if="!todoItem.done">
+            <span class="tick-icon mr-19" @click="markDone">
+            <TickIcon />
+          </span>
+          <span class="pencil-icon mr-19" v-if="!isEdit" @click="editTask">
+            <PencilIcon />
+          </span>
+        </template>
+        
         <span class="delete-icon mr-19" @click="deleteTask">
-          <img :src="deleteIcon" />
+          <DeleteIcon />
         </span>
       </div>
       <div class="card-footer-right">
         <span class="completed-badge" v-if="todoItem.done">{{
-          $t(`Completed ${todoItem.completedIn} ago`)
+          completedTime
         }}</span>
       </div>
+
     </div>
   </div>
 </template>
@@ -46,7 +47,15 @@
 import { formatDistance } from "date-fns";
 import format from "date-fns/format";
 import { mapState, mapGetters } from "vuex";
+import TickIcon from "@/assets/img/tick.svg?inline";
+import PencilIcon from "@/assets/img/pencil.svg?inline";
+import DeleteIcon from "@/assets/img/delete.svg?inline";
 export default {
+  components: {
+    TickIcon,
+    PencilIcon,
+    DeleteIcon
+  },
   props: {
     todoItem: {
       required: true,
@@ -55,7 +64,12 @@ export default {
   },
   computed: {
     ...mapState("todo", ["loading"]),
-    ...mapGetters(["getTaskById"]),
+    ...mapGetters([
+      'getTaskById'
+    ]),
+    completedTime() {
+      return this.$t("Completed") + ` ${this.todoItem.completedIn} `+ this.$t("ago")
+    }
   },
   data() {
     return {
@@ -63,9 +77,6 @@ export default {
       isEdit: false,
       showError: false,
       taskText: '',
-      tickIcon: require("@/assets/img/tick.svg"),
-      pencilIcon: require("@/assets/img/pencil.svg"),
-      deleteIcon: require("@/assets/img/delete.svg"),
     };
   },
   methods: {
@@ -113,8 +124,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mark-done {
-  text-decoration: line-through;
-  color: #0bc375;
-}
+    .mark-done {
+      text-decoration: line-through;
+      color: #0BC375;
+    }
 </style>

@@ -1,14 +1,19 @@
 <template>
   <div class="loader-overlay">
-    <img :src="loaderIcon" />
+    <!-- <img :src="loaderIcon" /> -->
+    <LoaderIcon class="loader-icon"/>
   </div>
 </template>
 
 <script>
+import LoaderIcon from "@/assets/img/loader.svg?inline"
 export default {
+  components: {
+    LoaderIcon
+  },
   data() {
     return {
-      loaderIcon: require("@/assets/img/loader.svg"),
+      
     };
   },
 };
@@ -23,10 +28,10 @@ export default {
     top:0%;
     left:0%;
 }
-.loader-overlay,.loader-overlay img{
+.loader-overlay, .loader-overlay .loader-icon{
     position: absolute;
 }
-.loader-overlay img {
+.loader-overlay .loader-icon{
     top: 50%;
     left: 50%;
     -webkit-animation:spin 4s linear infinite;
