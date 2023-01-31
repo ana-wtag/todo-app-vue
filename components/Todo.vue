@@ -15,12 +15,16 @@
     <div class="card-footer">
       <div class="card-footer-left">
         <button v-if="isEdit" @click="onSave">{{ $t("Save") }}</button>
-        <span class="tick-icon mr-19" v-if="!todoItem.done" @click="markDone">
-          <TickIcon />
-        </span>
-        <span class="pencil-icon mr-19" v-if="!todoItem.done && !isEdit">
-          <PencilIcon />
-        </span>
+
+        <template v-if="!todoItem.done">
+            <span class="tick-icon mr-19" @click="markDone">
+            <TickIcon />
+          </span>
+          <span class="pencil-icon mr-19" v-if="!isEdit">
+            <PencilIcon />
+          </span>
+        </template>
+        
         <span class="delete-icon mr-19" @click="deleteTask">
           <DeleteIcon />
         </span>
