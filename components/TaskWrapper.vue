@@ -26,9 +26,9 @@ export default {
     ...mapState("todo", ["todoList", "limit"]),
     btnText() {
       if (this.loadMore) {
-        return "Load More";
+        return `${this.$t("Load")} ${this.$t("More")}`
       } else if (this.showLess) {
-        return "Show Less";
+        return `${this.$t("Show")} ${this.$t("Less")}`
       } else {
         return "";
       }
