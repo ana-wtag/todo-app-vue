@@ -2,11 +2,11 @@
   <section>
     <div class="task-area">
       <AddTaskCard />
-      <Todo v-for="todo in computedList" :key="todo.id" :todoItem="todo" />
+      <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
     </div>
 
     <div class="load-btn">
-      <button v-if="loadMore || showLess" @click="onLoadBtnClick">
+      <button v-if="isLoadMoreState || isShowLessState" @click="onLoadBtnClick">
         {{ btnText }}
       </button>
     </div>
@@ -25,45 +25,34 @@ export default {
   computed: {
     ...mapState("todo", ["todoList", "limit"]),
     btnText() {
-      if (this.loadMore) {
-        return `${this.$t("Load")} ${this.$t("More")}`
-      } else if (this.showLess) {
-        return `${this.$t("Show")} ${this.$t("Less")}`
+      if (this.isLoadMoreState) {
+        return `${this.$t("Load")} ${this.$t("More")}`;
+      } else if (this.isShowLessState) {
+        return `${this.$t("Show")} ${this.$t("Less")}`;
       } else {
         return "";
       }
     },
-    loadMore() {
-      if (this.todoList.length > this.computedList.length) {
-        return true;
-      } else {
-        return false;
-      }
+    isLoadMoreState() {
+      return this.todoList.length > this.paginatedList.length;
     },
-    showLess() {
-      if (this.computedList.length > this.limit) {
-        return true;
-      } else {
-        return false;
-      }
+    isShowLessState() {
+      return this.paginatedList.length > this.limit;
     },
-    computedList() {
-      if (this.todoList.length > 0) {
-        return this.todoList.slice(this.firstIndex, this.lastIndex);
-      } else {
-        return [];
-      }
+    paginatedList() {
+      return this.todoList.length > 0
+        ? this.todoList.slice(this.firstIndex, this.lastIndex)
+        : [];
     },
   },
   methods: {
     onLoadBtnClick() {
-      if (this.loadMore) {
-        if (this.lastIndex + this.limit >= this.todoList.length) {
-          this.lastIndex = this.todoList.length;
-        } else {
-          this.lastIndex = this.lastIndex + this.limit;
-        }
-      } else if (this.showLess) {
+      if (this.isLoadMoreState) {
+        this.lastIndex = Math.min(
+          this.lastIndex + this.limit,
+          this.todoList.length
+        );
+      } else if (this.isShowLessState) {
         this.lastIndex = this.limit;
       }
     },
