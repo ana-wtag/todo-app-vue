@@ -23,7 +23,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("todo", ["todoList", "limit"]),
+    ...mapState("todo", ["currentFilter", "limit"]),
     btnText() {
       if (this.isLoadMoreState) {
         return `${this.$t("Load")} ${this.$t("More")}`;
@@ -34,14 +34,14 @@ export default {
       }
     },
     isLoadMoreState() {
-      return this.todoList.length > this.paginatedList.length;
+      return this.currentFilter.length > this.paginatedList.length;
     },
     isShowLessState() {
       return this.paginatedList.length > this.limit;
     },
     paginatedList() {
-      return this.todoList.length > 0
-        ? this.todoList.slice(this.firstIndex, this.lastIndex)
+      return this.currentFilter.length > 0
+        ? this.currentFilter.slice(this.firstIndex, this.lastIndex)
         : [];
     },
   },
@@ -50,7 +50,7 @@ export default {
       if (this.isLoadMoreState) {
         this.lastIndex = Math.min(
           this.lastIndex + this.limit,
-          this.todoList.length
+          this.currentFilter.length
         );
       } else if (this.isShowLessState) {
         this.lastIndex = this.limit;

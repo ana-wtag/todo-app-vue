@@ -3,16 +3,29 @@ export const state = () => ({
   todoList: [],
   taskId: "",
   loading: false,
-  limit: 9,
-  showForm: false
+  limit: 3,
+  showForm: false,
+  currentFilter: []
 });
 
 export const actions = {
+  setAllFilter({ commit }) {
+    commit("setAllFilter")
+  },
+  setIncompleteFilter({ commit, getters }) {
+    const incompleteArr = getters.getIncompletedTaskList;
+    commit("setIncompleteFilter", incompleteArr)
+  },
+  setCompleteFilter({ commit, getters }) {
+    const completeArr = getters.getCompletedTaskList;
+    commit("setCompleteFilter", completeArr)
+  },
   addTask({ commit }, task) {
     commit("incrementTaskId");
     setTimeout(() => {
       commit("toggleLoad");
       commit("addTask", task);
+      //commit("setAllFilter");
     }, 1000);
     commit("toggleLoad");
   },
@@ -37,6 +50,15 @@ export const actions = {
 };
 
 export const mutations = {
+  setAllFilter(state) {
+    state.currentFilter = state.todoList
+  },
+  setIncompleteFilter(state, arr) {
+    state.currentFilter = arr
+  },
+  setCompleteFilter(state, arr) {
+    state.currentFilter = arr
+  },
   addTask(state, task) {
     state.todoList.push({
       id: state.taskId,
