@@ -14,13 +14,20 @@ export const actions = {
     }, 1000);
     commit("toggleLoad");
   },
+  editTask({ commit, getters }, task) {
+    const item = getters.getTaskById(task.id);
+    setTimeout(() => {
+      commit("toggleTaskLoad", item);
+      commit("editTask", { item, task });
+    }, 1000);
+    commit("toggleTaskLoad", item);
+  },
   removeTask({ commit }, task) {
     commit("removeTask", task);
   },
   markDone({ commit, getters }, task) {
     const item = getters.getTaskById(task.id);
-    const completedIn = task.completedIn;
-    commit("markDone", { item, completedIn });
+    commit("markDone", { item, task });
   },
 };
 
@@ -41,15 +48,21 @@ export const mutations = {
   removeTask(state, task) {
     state.todoList.splice(state.todoList.indexOf(task), 1);
   },
-  markDone(state, { item, completedIn }) {
+  markDone(state, { item, task }) {
     item.done = true;
-    item.completedIn = completedIn;
+    item.completedIn = task.completedIn;
   },
-
+  editTask(state, { item, task }) {
+    item.text = task.updatedText;
+  },
   toggleLoad(state) {
     state.loading = !state.loading;
   },
+  toggleTaskLoad(state, item) {
+    item.loading = !item.loading;
+  },
 };
+
 export const getters = {
   getTaskById: (state) => (taskId) => {
     return state.todoList.find((item) => item.id === taskId);

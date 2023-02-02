@@ -1,14 +1,18 @@
 <template>
   <div class="card">
-    <CardLoader v-if="todoItem.loading"/>
-    <textarea v-if="isEdit" v-model="todoItem.text"></textarea>
-
+    <CardLoader v-if="todoItem.loading" />
+    <template v-if="isEdit">
+      <textarea v-model="taskText"></textarea>
+      <div class="error-msg" v-if="showError">
+        {{ $t("Title is required!") }}
+      </div>
+    </template>
     <template v-else>
       <div class="card-header" :class="{ 'mark-done': todoItem.done }">
         {{ todoItem.text }}
       </div>
       <div class="card-subheader">
-        <span>Created At {{ formatDate(todoItem.createdAt, 'dd.MM.yy') }}</span>
+        <span>Created At {{ formatDate(todoItem.createdAt, "dd.MM.yy") }}</span>
       </div>
     </template>
 
@@ -20,7 +24,7 @@
             <span class="tick-icon mr-19" @click="markDone">
             <TickIcon />
           </span>
-          <span class="pencil-icon mr-19" v-if="!isEdit">
+          <span class="pencil-icon mr-19" v-if="!isEdit" @click="editTask">
             <PencilIcon />
           </span>
         </template>
@@ -40,8 +44,8 @@
 </template>
 
 <script>
-import {formatDistance} from 'date-fns'
-import format from 'date-fns/format'
+import { formatDistance } from "date-fns";
+import format from "date-fns/format";
 import { mapState, mapGetters } from "vuex";
 import TickIcon from "@/assets/img/tick.svg?inline";
 import PencilIcon from "@/assets/img/pencil.svg?inline";
@@ -71,20 +75,50 @@ export default {
     return {
       formatDate: format,
       isEdit: false,
+      showError: false,
+      taskText: '',
     };
   },
   methods: {
     deleteTask() {
-      this.$store.dispatch("todo/removeTask", this.todoItem);
+      if (this.isEdit) {
+        this.isEdit = false;
+        this.showError = false
+      } else {
+        this.$store.dispatch("todo/removeTask", this.todoItem);
+      }
     },
     markDone() {
-      const completedIn = formatDistance(new Date(), this.todoItem.createdAt)
+      if (this.isEdit) {
+        this.onSave();
+        if(this.showError) {
+          return
+        }
+      }
+      const completedIn = formatDistance(new Date(), this.todoItem.createdAt);
       const task = {
         id: this.todoItem.id,
-        completedIn: completedIn
+        completedIn: completedIn,
+      };
+      this.$store.dispatch("todo/markDone", task);
+    },
+    editTask() {
+      this.taskText = this.todoItem.text
+      this.isEdit = true;
+    },
+    onSave() {
+      if (!this.taskText) {
+        this.showError = true;
+        return;
       }
-      this.$store.dispatch("todo/markDone", task)
-    }
+      const task = {
+        id: this.todoItem.id,
+        updatedText: this.taskText,
+      };
+      this.$store.dispatch("todo/editTask", task);
+      this.isEdit = false;
+      this.showError = false;
+    },
   },
 };
 </script>
