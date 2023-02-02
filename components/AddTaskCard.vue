@@ -25,13 +25,9 @@ export default {
     };
   },
   computed: {
-    ...mapState("todo", ["loading"])
+    ...mapState("todo", ["loading","showForm"])
   },
   props: {
-    showForm: {
-      type: Boolean,
-      required: true
-    }
   },
   methods: {
     addTask() {
@@ -52,7 +48,7 @@ export default {
     },
     clearField() {
       this.todoText = "";
-      this.$emit('toggleForm', false)
+      this.$store.dispatch("todo/showForm",false)
       this.showError = false
     }
   }

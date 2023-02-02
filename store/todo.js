@@ -3,6 +3,8 @@ export const state = () => ({
   todoList: [],
   taskId: "",
   loading: false,
+  limit: 9,
+  showForm: false
 });
 
 export const actions = {
@@ -24,6 +26,9 @@ export const actions = {
   },
   removeTask({ commit }, task) {
     commit("removeTask", task);
+  },
+  showForm({ commit }, value) {
+    commit("showForm", value);
   },
   markDone({ commit, getters }, task) {
     const item = getters.getTaskById(task.id);
@@ -55,12 +60,16 @@ export const mutations = {
   editTask(state, { item, task }) {
     item.text = task.updatedText;
   },
+  showForm(state, value) {
+    state.showForm = value;
+  },
   toggleLoad(state) {
     state.loading = !state.loading;
   },
   toggleTaskLoad(state, item) {
     item.loading = !item.loading;
   },
+
 };
 
 export const getters = {

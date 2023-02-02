@@ -12,7 +12,7 @@
         {{ todoItem.text }}
       </div>
       <div class="card-subheader">
-        <span>Created At {{ formatDate(todoItem.createdAt, "dd.MM.yy") }}</span>
+        <span>{{ createdTime }}</span>
       </div>
     </template>
 
@@ -69,6 +69,9 @@ export default {
     ]),
     completedTime() {
       return this.$t("Completed") + ` ${this.todoItem.completedIn} `+ this.$t("ago")
+    },
+    createdTime() {
+      return `${this.$t("Created")} ${this.$t("at")} ${this.formatDate(this.todoItem.createdAt, "dd.MM.yy")}`
     }
   },
   data() {
