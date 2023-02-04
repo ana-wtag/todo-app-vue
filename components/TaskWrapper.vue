@@ -24,11 +24,18 @@ export default {
     };
   },
   computed: {
-    ...mapState("todo", ["limit","currentFilter", "todoList"]),
+    ...mapState("todo", ["limit","currentFilter", "todoList", "searchText"]),
     ...mapGetters("todo", [
       'getCompletedTaskList',
       'getIncompletedTaskList'
     ]),
+    list() {
+      if(this.searchText) {
+        return this.paginatedCurrentFilter.filter(item => item.text.toLowerCase().includes(this.searchText.toLowerCase()))
+      } else {
+        return this.paginatedCurrentFilter
+      }
+    },
     paginatedCurrentFilter() {
       if(this.currentFilter === filters.ALL) {
         return this.todoList
@@ -50,14 +57,14 @@ export default {
       }
     },
     isLoadMoreState() {
-      return this.paginatedCurrentFilter.length > this.paginatedList.length;
+      return this.list.length > this.paginatedList.length;
     },
     isShowLessState() {
-      return this.paginatedList.length > this.limit;
+      return this.list.length > this.limit;
     },
     paginatedList() {
-      return this.paginatedCurrentFilter.length > 0
-        ? this.paginatedCurrentFilter.slice(this.firstIndex, this.lastIndex)
+      return this.list.length > 0
+        ? this.list.slice(this.firstIndex, this.lastIndex)
         : [];
     },
   },
@@ -66,7 +73,7 @@ export default {
       if (this.isLoadMoreState) {
         this.lastIndex = Math.min(
           this.lastIndex + this.limit,
-          this.paginatedCurrentFilter.length
+          this.list.length
         );
       } else if (this.isShowLessState) {
         this.lastIndex = this.limit;

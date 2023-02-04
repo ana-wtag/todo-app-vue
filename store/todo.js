@@ -5,10 +5,15 @@ export const state = () => ({
   loading: false,
   limit: 3,
   showForm: false,
-  currentFilter: "All"
+  currentFilter: "All",
+  searchLoading: false,
+  searchText: ""
 });
 
 export const actions = {
+  search({ commit }, searchText) {
+    commit('setSearchText', searchText)
+  },
   setCurrentFilter({ commit }, filter) {
     commit("setCurrentFilter", filter)
   },
@@ -42,6 +47,9 @@ export const actions = {
 };
 
 export const mutations = {
+  setSearchText(state, text) {
+    state.searchText = text
+  },
   setCurrentFilter(state, filter) {
     state.currentFilter = filter
   },
