@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -23,7 +23,22 @@ export default {
     };
   },
   computed: {
-    ...mapState("todo", ["currentFilter", "limit"]),
+    ...mapState("todo", ["limit","currentFilter", "todoList"]),
+    ...mapGetters("todo", [
+      'getCompletedTaskList',
+      'getIncompletedTaskList'
+    ]),
+    paginatedCurrentFilter() {
+      if(this.currentFilter === "All") {
+        return this.todoList
+      } else if(this.currentFilter === "Incomplete") {
+        return this.getIncompletedTaskList
+      } else if(this.currentFilter === "Complete") {
+        return this.getCompletedTaskList
+      } else {
+        return []
+      }
+    },
     btnText() {
       if (this.isLoadMoreState) {
         return `${this.$t("Load")} ${this.$t("More")}`;
@@ -34,14 +49,14 @@ export default {
       }
     },
     isLoadMoreState() {
-      return this.currentFilter.length > this.paginatedList.length;
+      return this.paginatedCurrentFilter.length > this.paginatedList.length;
     },
     isShowLessState() {
       return this.paginatedList.length > this.limit;
     },
     paginatedList() {
-      return this.currentFilter.length > 0
-        ? this.currentFilter.slice(this.firstIndex, this.lastIndex)
+      return this.paginatedCurrentFilter.length > 0
+        ? this.paginatedCurrentFilter.slice(this.firstIndex, this.lastIndex)
         : [];
     },
   },
@@ -50,7 +65,7 @@ export default {
       if (this.isLoadMoreState) {
         this.lastIndex = Math.min(
           this.lastIndex + this.limit,
-          this.currentFilter.length
+          this.paginatedCurrentFilter.length
         );
       } else if (this.isShowLessState) {
         this.lastIndex = this.limit;

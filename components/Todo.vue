@@ -64,9 +64,6 @@ export default {
   },
   computed: {
     ...mapState("todo", ["loading"]),
-    ...mapGetters([
-      'getTaskById'
-    ]),
     completedTime() {
       return this.$t("Completed") + ` ${this.todoItem.completedIn} `+ this.$t("ago")
     },

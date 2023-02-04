@@ -1,43 +1,27 @@
 <template>
   <div>
-    <button @click="showAll" :class="{ 'is-active': isAll }">{{ $t("All") }}</button>
-    <button @click="showIncomplete" :class="{ 'is-active': isIncomplete }">{{ $t("Incomplete") }}</button>
-    <button @click="showComplete" :class="{ 'is-active': isComplete }">{{ $t("Complete") }}</button>
+    <button @click="showAll" :class="{ 'is-active': currentFilter === 'All' }">{{ $t("All") }}</button>
+    <button @click="showIncomplete" :class="{ 'is-active': currentFilter === 'Incomplete' }">{{ $t("Incomplete") }}</button>
+    <button @click="showComplete" :class="{ 'is-active': currentFilter === 'Complete' }">{{ $t("Complete") }}</button>
   </div>
 </template>
 
 <script>
-
+import { mapState } from "vuex";
 export default {
-  data() {
-    return {
-      isAll: true,
-      isComplete: false,
-      isIncomplete: false
-    }
+  computed: {
+    ...mapState("todo", ["currentFilter"])
   },
   methods: {
     showAll() {
-      this.isAll = true
-      this.isComplete = false
-      this.isIncomplete = false
-      this.$store.dispatch("todo/setAllFilter")
+      this.$store.dispatch("todo/setCurrentFilter", "All")
     },
     showIncomplete() {
-      this.isAll = false
-      this.isComplete = false
-      this.isIncomplete = true
-      this.$store.dispatch("todo/setIncompleteFilter")
+      this.$store.dispatch("todo/setCurrentFilter", "Incomplete")
     },
     showComplete() {
-      this.isAll = false
-      this.isComplete = true
-      this.isIncomplete = false
-      this.$store.dispatch("todo/setCompleteFilter")
+      this.$store.dispatch("todo/setCurrentFilter", "Complete")
     }
-  },
-  created() {
-    this.$store.dispatch("todo/setAllFilter")
   }
 };
 </script>

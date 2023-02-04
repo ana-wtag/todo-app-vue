@@ -5,28 +5,20 @@ export const state = () => ({
   loading: false,
   limit: 3,
   showForm: false,
-  currentFilter: []
+  currentFilter: "All"
 });
 
 export const actions = {
-  setAllFilter({ commit }) {
-    commit("setAllFilter")
+  setCurrentFilter({ commit }, filter) {
+    commit("setCurrentFilter", filter)
   },
-  setIncompleteFilter({ commit, getters }) {
-    const incompleteArr = getters.getIncompletedTaskList;
-    commit("setIncompleteFilter", incompleteArr)
-  },
-  setCompleteFilter({ commit, getters }) {
-    const completeArr = getters.getCompletedTaskList;
-    commit("setCompleteFilter", completeArr)
-  },
+
   addTask({ commit }, task) {
     commit("incrementTaskId");
     setTimeout(() => {
       commit("toggleLoad");
       commit("addTask", task);
-      //commit("setAllFilter");
-    }, 1000);
+    }, 800);
     commit("toggleLoad");
   },
   editTask({ commit, getters }, task) {
@@ -34,7 +26,7 @@ export const actions = {
     setTimeout(() => {
       commit("toggleTaskLoad", item);
       commit("editTask", { item, task });
-    }, 1000);
+    }, 800);
     commit("toggleTaskLoad", item);
   },
   removeTask({ commit }, task) {
@@ -50,14 +42,8 @@ export const actions = {
 };
 
 export const mutations = {
-  setAllFilter(state) {
-    state.currentFilter = state.todoList
-  },
-  setIncompleteFilter(state, arr) {
-    state.currentFilter = arr
-  },
-  setCompleteFilter(state, arr) {
-    state.currentFilter = arr
+  setCurrentFilter(state, filter) {
+    state.currentFilter = filter
   },
   addTask(state, task) {
     state.todoList.push({
