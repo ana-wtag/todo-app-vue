@@ -46,7 +46,7 @@
 <script>
 import { formatDistance } from "date-fns";
 import format from "date-fns/format";
-import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 import TickIcon from "@/assets/img/tick.svg?inline";
 import PencilIcon from "@/assets/img/pencil.svg?inline";
 import DeleteIcon from "@/assets/img/delete.svg?inline";
