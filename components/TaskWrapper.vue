@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <section class="task-container">
+    <CardLoader v-if="searchLoading"/>
     <div class="task-area">
       <AddTaskCard />
       <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
@@ -24,7 +25,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("todo", ["limit","currentFilter", "todoList", "searchText"]),
+    ...mapState("todo", ["limit","currentFilter", "todoList", "searchText","searchLoading"]),
     ...mapGetters("todo", [
       'getCompletedTaskList',
       'getIncompletedTaskList'
@@ -90,5 +91,8 @@ export default {
 .task-area {
   display: flex;
   flex-wrap: wrap;
+}
+.task-container{
+  position: relative;
 }
 </style>

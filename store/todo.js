@@ -11,6 +11,9 @@ export const state = () => ({
 });
 
 export const actions = {
+  toggleSearchLoad({ commit }) {
+    commit('toggleSearchLoad')
+  },
   search({ commit }, searchText) {
     commit('setSearchText', searchText)
   },
@@ -47,6 +50,9 @@ export const actions = {
 };
 
 export const mutations = {
+  toggleSearchLoad(state) {
+    state.searchLoading = !state.searchLoading
+  },
   setSearchText(state, text) {
     state.searchText = text
   },
