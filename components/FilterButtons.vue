@@ -8,19 +8,20 @@
 
 <script>
 import { mapState } from "vuex";
+import filters from '@/plugins/constants';
 export default {
   computed: {
     ...mapState("todo", ["currentFilter"])
   },
   methods: {
     showAll() {
-      this.$store.dispatch("todo/setCurrentFilter", "All")
+      this.$store.dispatch("todo/setCurrentFilter", filters.ALL)
     },
     showIncomplete() {
-      this.$store.dispatch("todo/setCurrentFilter", "Incomplete")
+      this.$store.dispatch("todo/setCurrentFilter", filters.INCOMPLETE)
     },
     showComplete() {
-      this.$store.dispatch("todo/setCurrentFilter", "Complete")
+      this.$store.dispatch("todo/setCurrentFilter", filters.COMPLETE)
     }
   }
 };

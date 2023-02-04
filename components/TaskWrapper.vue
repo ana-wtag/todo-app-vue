@@ -15,6 +15,7 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import filters from '@/plugins/constants';
 export default {
   data() {
     return {
@@ -29,11 +30,11 @@ export default {
       'getIncompletedTaskList'
     ]),
     paginatedCurrentFilter() {
-      if(this.currentFilter === "All") {
+      if(this.currentFilter === filters.ALL) {
         return this.todoList
-      } else if(this.currentFilter === "Incomplete") {
+      } else if(this.currentFilter === filters.INCOMPLETE) {
         return this.getIncompletedTaskList
-      } else if(this.currentFilter === "Complete") {
+      } else if(this.currentFilter === filters.COMPLETE) {
         return this.getCompletedTaskList
       } else {
         return []
