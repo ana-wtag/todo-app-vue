@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="nav-right">
-      <input type="text" @keyup="onSearch" v-model="searchText"/>
+      <input type="text" @keyup="search" v-model="searchText"/>
       <!-- for search -->
       <span class="search-icon">
         <img :src="searchIcon" />
@@ -24,12 +24,18 @@ export default {
   data() {
     return {
       searchText: "",
+      searchTimeout: "",
       logo: require("@/assets/img/leaf.svg"),
       searchIcon: require("@/assets/img/search.svg"),
     };
   },
   methods: {
-    onSearch() {
+    search() {
+      clearTimeout(this.searchTimeout)
+      this.searchTimeout = setTimeout(this.performSearch, 800)
+    },
+    performSearch() {
+      // Your search logic here
       this.$store.dispatch("todo/search", this.searchText);
     },
     switchLanguage(event) {
