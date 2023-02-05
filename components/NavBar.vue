@@ -27,7 +27,7 @@ export default {
       searchTimeout: "",
       logo: require("@/assets/img/leaf.svg"),
       searchIcon: require("@/assets/img/search.svg"),
-    };
+    }
   },
   methods: {
     search() {
@@ -35,8 +35,7 @@ export default {
       this.searchTimeout = setTimeout(this.performSearch, 800)
     },
     performSearch() {
-      // Your search logic here
-      this.$store.dispatch("todo/search", this.searchText);
+      this.$store.dispatch("todo/search", this.searchText)
     },
     switchLanguage(event) {
       this.$i18n.setLocale(event.target.value)

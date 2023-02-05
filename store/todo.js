@@ -15,7 +15,11 @@ export const actions = {
     commit('toggleSearchLoad')
   },
   search({ commit }, searchText) {
-    commit('setSearchText', searchText)
+    setTimeout(() => {
+      commit('toggleSearchLoad')
+      commit('setSearchText', searchText)
+    }, 800);
+    commit('toggleSearchLoad')
   },
   setCurrentFilter({ commit }, filter) {
     commit("setCurrentFilter", filter)
