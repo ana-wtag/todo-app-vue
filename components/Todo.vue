@@ -80,12 +80,12 @@ export default {
     };
   },
   methods: {
-    deleteTask() {
+    async deleteTask() {
       if (this.isEdit) {
         this.isEdit = false;
         this.showError = false
       } else {
-        this.$store.dispatch("todo/removeTask", this.todoItem);
+        await this.$store.dispatch("todo/removeTask", this.todoItem);
       }
     },
     markDone() {
