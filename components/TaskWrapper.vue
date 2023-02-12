@@ -15,7 +15,7 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import filters from '@/plugins/constants';
+import filters from "@/plugins/constants";
 export default {
   data() {
     return {
@@ -24,20 +24,18 @@ export default {
     };
   },
   computed: {
-    ...mapState("todo", ["limit","currentFilter", "todoList"]),
-    ...mapGetters("todo", [
-      'getCompletedTaskList',
-      'getIncompletedTaskList'
-    ]),
+    ...mapState("todo", ["limit", "currentFilter", "todoList"]),
+    ...mapGetters("todo", ["getCompletedTaskList", "getIncompletedTaskList"]),
     paginatedCurrentFilter() {
-      if(this.currentFilter === filters.ALL) {
-        return this.todoList
-      } else if(this.currentFilter === filters.INCOMPLETE) {
-        return this.getIncompletedTaskList
-      } else if(this.currentFilter === filters.COMPLETE) {
-        return this.getCompletedTaskList
-      } else {
-        return []
+      switch (this.currentFilter) {
+        case filters.ALL:
+          return this.todoList;
+        case filters.INCOMPLETE:
+          return this.getIncompletedTaskList;
+        case filters.COMPLETE:
+          return this.getCompletedTaskList;
+        default:
+          return [];
       }
     },
     btnText() {
