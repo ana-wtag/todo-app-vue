@@ -18,7 +18,7 @@
 
     <div class="card-footer">
       <div class="card-footer-left">
-        <button v-if="isEdit" @click="onSave">{{ $t("Save") }}</button>
+        <button v-if="isEdit" @click="onSave">{{ $t("task.save") }}</button>
 
         <template v-if="!todoItem.done">
             <span class="tick-icon mr-19" @click="markDone">
@@ -65,10 +65,10 @@ export default {
   computed: {
     ...mapState("todo", ["loading"]),
     completedTime() {
-      return this.$t("Completed") + ` ${this.todoItem.completedIn} `+ this.$t("ago")
+      return this.$t("task.completed") + ` ${this.todoItem.completedIn} `+ this.$t("ago")
     },
     createdTime() {
-      return `${this.$t("Created")} ${this.$t("at")} ${this.formatDate(this.todoItem.createdAt, "dd.MM.yy")}`
+      return `${this.$t("task.created")} ${this.$t("at")} ${this.formatDate(this.todoItem.createdAt, "dd.MM.yy")}`
     }
   },
   data() {

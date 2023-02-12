@@ -42,9 +42,9 @@ export default {
     },
     btnText() {
       if (this.isLoadMoreState) {
-        return `${this.$t("Load")} ${this.$t("More")}`;
+        return `${this.$t("general.load")} ${this.$t("general.more")}`;
       } else if (this.isShowLessState) {
-        return `${this.$t("Show")} ${this.$t("Less")}`;
+        return `${this.$t("general.show")} ${this.$t("general.less")}`;
       } else {
         return "";
       }
