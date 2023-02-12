@@ -10,6 +10,11 @@
 import { mapState } from "vuex";
 import filters from '@/plugins/constants';
 export default {
+  data() {
+    return {
+      filters: filters
+    }
+  },
   computed: {
     ...mapState("todo", ["currentFilter"])
   },
