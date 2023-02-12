@@ -18,7 +18,7 @@
 
     <div class="card-footer">
       <div class="card-footer-left">
-        <button v-if="isEdit" @click="onSave">{{ $t("Save") }}</button>
+        <button v-if="isEdit" @click="onSave">{{ $t("task.save") }}</button>
 
         <template v-if="!todoItem.done">
             <span class="tick-icon mr-19" @click="markDone">
@@ -46,7 +46,7 @@
 <script>
 import { formatDistance } from "date-fns";
 import format from "date-fns/format";
-import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 import TickIcon from "@/assets/img/tick.svg?inline";
 import PencilIcon from "@/assets/img/pencil.svg?inline";
 import DeleteIcon from "@/assets/img/delete.svg?inline";
@@ -64,14 +64,11 @@ export default {
   },
   computed: {
     ...mapState("todo", ["loading"]),
-    ...mapGetters([
-      'getTaskById'
-    ]),
     completedTime() {
-      return this.$t("Completed") + ` ${this.todoItem.completedIn} `+ this.$t("ago")
+      return this.$t("task.completed") + ` ${this.todoItem.completedIn} `+ this.$t("general.ago")
     },
     createdTime() {
-      return `${this.$t("Created")} ${this.$t("at")} ${this.formatDate(this.todoItem.createdAt, "dd.MM.yy")}`
+      return `${this.$t("task.created")} ${this.$t("general.at")} ${this.formatDate(this.todoItem.createdAt, "dd.MM.yy")}`
     }
   },
   data() {

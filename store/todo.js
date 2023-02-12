@@ -1,19 +1,26 @@
 import { v4 as uuidv4 } from "uuid";
+import constants from '@/plugins/constants';
+
 export const state = () => ({
   todoList: [],
   taskId: "",
   loading: false,
-  limit: 9,
-  showForm: false
+  limit: constants.LIMIT,
+  showForm: false,
+  currentFilter: constants.ALL
 });
 
 export const actions = {
+  setCurrentFilter({ commit }, filter) {
+    commit("setCurrentFilter", filter)
+  },
+
   addTask({ commit }, task) {
     commit("incrementTaskId");
     setTimeout(() => {
       commit("toggleLoad");
       commit("addTask", task);
-    }, 1000);
+    }, constants.TIMER);
     commit("toggleLoad");
   },
   editTask({ commit, getters }, task) {
@@ -21,7 +28,7 @@ export const actions = {
     setTimeout(() => {
       commit("toggleTaskLoad", item);
       commit("editTask", { item, task });
-    }, 1000);
+    }, constants.TIMER);
     commit("toggleTaskLoad", item);
   },
   removeTask({ commit }, task) {
@@ -37,6 +44,9 @@ export const actions = {
 };
 
 export const mutations = {
+  setCurrentFilter(state, filter) {
+    state.currentFilter = filter
+  },
   addTask(state, task) {
     state.todoList.push({
       id: state.taskId,

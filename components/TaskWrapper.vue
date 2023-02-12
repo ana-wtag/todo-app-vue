@@ -14,7 +14,8 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
+import filters from "@/plugins/constants";
 export default {
   data() {
     return {
@@ -23,25 +24,39 @@ export default {
     };
   },
   computed: {
-    ...mapState("todo", ["todoList", "limit"]),
+    ...mapState("todo", ["limit", "currentFilter", "todoList"]),
+    ...mapGetters("todo", ["getCompletedTaskList", "getIncompletedTaskList"]),
+    paginatedCurrentFilter() {
+      switch (this.currentFilter) {
+        case filters.ALL:
+          return this.todoList;
+        case filters.INCOMPLETE:
+          return this.getIncompletedTaskList;
+        case filters.COMPLETE:
+          return this.getCompletedTaskList;
+        default:
+          return [];
+      }
+    },
     btnText() {
-      if (this.isLoadMoreState) {
-        return `${this.$t("Load")} ${this.$t("More")}`;
-      } else if (this.isShowLessState) {
-        return `${this.$t("Show")} ${this.$t("Less")}`;
-      } else {
-        return "";
+      switch (true) {
+        case this.isLoadMoreState:
+          return `${this.$t("general.load")} ${this.$t("general.more")}`;
+        case this.isShowLessState:
+          return `${this.$t("general.show")} ${this.$t("general.less")}`;
+        default:
+          return "";
       }
     },
     isLoadMoreState() {
-      return this.todoList.length > this.paginatedList.length;
+      return this.paginatedCurrentFilter.length > this.paginatedList.length;
     },
     isShowLessState() {
       return this.paginatedList.length > this.limit;
     },
     paginatedList() {
-      return this.todoList.length > 0
-        ? this.todoList.slice(this.firstIndex, this.lastIndex)
+      return this.paginatedCurrentFilter.length > 0
+        ? this.paginatedCurrentFilter.slice(this.firstIndex, this.lastIndex)
         : [];
     },
   },
@@ -50,9 +65,11 @@ export default {
       if (this.isLoadMoreState) {
         this.lastIndex = Math.min(
           this.lastIndex + this.limit,
-          this.todoList.length
+          this.paginatedCurrentFilter.length
         );
-      } else if (this.isShowLessState) {
+        return
+      }
+      if (this.isShowLessState) {
         this.lastIndex = this.limit;
       }
     },

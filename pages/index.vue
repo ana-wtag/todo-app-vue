@@ -1,10 +1,10 @@
 <template>
   <section>
     <div class="section-head">
-      <h4>{{ $t("Add Task") }}</h4>
+      <h4>{{ $t("task.add") }}</h4>
     </div>
     <div class="btn-area">
-      <button @click="showForm">{{ $t("Create") }}</button>
+      <button @click="showForm">{{ $t("task.create") }}</button>
       <div class="filter-area">
         <FilterButtons />
       </div>
