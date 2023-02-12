@@ -39,12 +39,13 @@ export default {
       }
     },
     btnText() {
-      if (this.isLoadMoreState) {
-        return `${this.$t("general.load")} ${this.$t("general.more")}`;
-      } else if (this.isShowLessState) {
-        return `${this.$t("general.show")} ${this.$t("general.less")}`;
-      } else {
-        return "";
+      switch (true) {
+        case this.isLoadMoreState:
+          return `${this.$t("general.load")} ${this.$t("general.more")}`;
+        case this.isShowLessState:
+          return `${this.$t("general.show")} ${this.$t("general.less")}`;
+        default:
+          return "";
       }
     },
     isLoadMoreState() {
@@ -66,7 +67,9 @@ export default {
           this.lastIndex + this.limit,
           this.paginatedCurrentFilter.length
         );
-      } else if (this.isShowLessState) {
+        return
+      }
+      if (this.isShowLessState) {
         this.lastIndex = this.limit;
       }
     },
