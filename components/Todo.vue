@@ -65,10 +65,10 @@ export default {
   computed: {
     ...mapState("todo", ["loading"]),
     completedTime() {
-      return this.$t("task.completed") + ` ${this.todoItem.completedIn} `+ this.$t("ago")
+      return this.$t("task.completed") + ` ${this.todoItem.completedIn} `+ this.$t("general.ago")
     },
     createdTime() {
-      return `${this.$t("task.created")} ${this.$t("at")} ${this.formatDate(this.todoItem.createdAt, "dd.MM.yy")}`
+      return `${this.$t("task.created")} ${this.$t("general.at")} ${this.formatDate(this.todoItem.createdAt, "dd.MM.yy")}`
     }
   },
   data() {
