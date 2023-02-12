@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button @click="showAll" :class="{ 'is-active': currentFilter === 'All' }">{{ $t("All") }}</button>
-    <button @click="showIncomplete" :class="{ 'is-active': currentFilter === 'Incomplete' }">{{ $t("Incomplete") }}</button>
-    <button @click="showComplete" :class="{ 'is-active': currentFilter === 'Complete' }">{{ $t("Complete") }}</button>
+    <button @click="showAll" :class="{ 'is-active': currentFilter === filters.ALL }">{{ $t("All") }}</button>
+    <button @click="showIncomplete" :class="{ 'is-active': currentFilter === filters.INCOMPLETE }">{{ $t("Incomplete") }}</button>
+    <button @click="showComplete" :class="{ 'is-active': currentFilter === filters.COMPLETE }">{{ $t("Complete") }}</button>
   </div>
 </template>
 
