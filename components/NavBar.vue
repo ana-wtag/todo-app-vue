@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="nav-right">
-      <input type="text" @keyup="search" v-model="searchText"/>
+      <input type="text" @keyup="debouncedSearch" v-model="searchText"/>
       <!-- for search -->
       <span class="search-icon">
         <img :src="searchIcon" />
@@ -20,19 +20,22 @@
 </template>
 
 <script>
+import debounce from '@/helpers/debounce'
 export default {
   data() {
     return {
       searchText: "",
-      searchTimeout: "",
+      //searchTimeout: "",
       logo: require("@/assets/img/leaf.svg"),
       searchIcon: require("@/assets/img/search.svg"),
     }
   },
   methods: {
-    search() {
-      clearTimeout(this.searchTimeout)
-      this.searchTimeout = setTimeout(this.performSearch, 800)
+    debouncedSearch(event) {
+      debounce(function (event) {
+          this.$store.dispatch("todo/search", event.target.value)
+      }, 3000)
+      
     },
     performSearch() {
       this.$store.dispatch("todo/search", this.searchText)
