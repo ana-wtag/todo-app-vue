@@ -1,6 +1,5 @@
 <template>
   <section class="task-container">
-    <CardLoader v-if="searchLoading"/>
     <div class="task-area">
       <AddTaskCard />
       <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
@@ -91,8 +90,5 @@ export default {
 .task-area {
   display: flex;
   flex-wrap: wrap;
-}
-.task-container{
-  position: relative;
 }
 </style>

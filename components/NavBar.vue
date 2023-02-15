@@ -37,7 +37,7 @@ export default {
 
     debouncedSearch: debounce(function (value) {
       this.$store.dispatch("todo/search", value)
-    }, 3000),
+    }, 300),
 
     switchLanguage(event) {
       this.$i18n.setLocale(event.target.value)

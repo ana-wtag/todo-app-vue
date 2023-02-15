@@ -1,6 +1,5 @@
 <template>
   <div class="loader-overlay">
-    <!-- <img :src="loaderIcon" /> -->
     <LoaderIcon class="loader-icon"/>
   </div>
 </template>
