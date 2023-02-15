@@ -31,7 +31,7 @@ export default {
     }
   },
   methods: {
-    search(event){
+    search(event) {
       this.debouncedSearch(event.target.value)
     },
 
