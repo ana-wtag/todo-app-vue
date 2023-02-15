@@ -1,13 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
+import constants from '@/plugins/constants';
+
 export const state = () => ({
   todoList: [],
   taskId: "",
   loading: false,
-  limit: 3,
+  limit: constants.LIMIT,
   showForm: false,
-  currentFilter: "All",
   searchLoading: false,
-  searchText: ""
+  searchText: "",
+  currentFilter: constants.ALL
 });
 
 export const actions = {
@@ -30,7 +32,7 @@ export const actions = {
     setTimeout(() => {
       commit("toggleLoad");
       commit("addTask", task);
-    }, 800);
+    }, constants.TIMER);
     commit("toggleLoad");
   },
   editTask({ commit, getters }, task) {
@@ -38,7 +40,7 @@ export const actions = {
     setTimeout(() => {
       commit("toggleTaskLoad", item);
       commit("editTask", { item, task });
-    }, 800);
+    }, constants.TIMER);
     commit("toggleTaskLoad", item);
   },
   removeTask({ commit }, task) {
