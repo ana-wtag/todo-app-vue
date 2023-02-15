@@ -1,10 +1,11 @@
 const debounce = (func, delay) => {
-    let searchTimeout = null
-    clearTimeout(searchTimeout)
-    const later = () => {
-        console.log(this)
+  let timeout
+  
+  return function executed() {
+    clearTimeout(timeout)
+    timeout = setTimeout(() => {
         func.apply(this, arguments)
-    }
-    searchTimeout = setTimeout(later, delay)
+      }, delay)
+  }
 }
 export default debounce

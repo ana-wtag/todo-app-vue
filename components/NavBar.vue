@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="nav-right">
-      <input type="text" @keyup="debouncedSearch" v-model="searchText"/>
+      <input type="text" @keyup="search" v-model="searchText"/>
       <!-- for search -->
       <span class="search-icon">
         <img :src="searchIcon" />
@@ -31,15 +31,14 @@ export default {
     }
   },
   methods: {
-    debouncedSearch(event) {
-      debounce(function (event) {
-          this.$store.dispatch("todo/search", event.target.value)
-      }, 3000)
-      
+    search(event){
+      this.debouncedSearch(event.target.value)
     },
-    performSearch() {
-      this.$store.dispatch("todo/search", this.searchText)
-    },
+
+    debouncedSearch: debounce(function (value) {
+      this.$store.dispatch("todo/search", value)
+    }, 3000),
+
     switchLanguage(event) {
       this.$i18n.setLocale(event.target.value)
     }
