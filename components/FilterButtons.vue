@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button @click="showAll" :class="{ 'is-active': currentFilter === 'All' }">{{ $t("All") }}</button>
-    <button @click="showIncomplete" :class="{ 'is-active': currentFilter === 'Incomplete' }">{{ $t("Incomplete") }}</button>
-    <button @click="showComplete" :class="{ 'is-active': currentFilter === 'Complete' }">{{ $t("Complete") }}</button>
+    <button @click="showAll" :class="{ 'is-active': currentFilter === filters.ALL }">{{ $t("general.all") }}</button>
+    <button @click="showIncomplete" :class="{ 'is-active': currentFilter === filters.INCOMPLETE }">{{ $t("general.incomplete") }}</button>
+    <button @click="showComplete" :class="{ 'is-active': currentFilter === filters.COMPLETE }">{{ $t("general.complete") }}</button>
   </div>
 </template>
 
@@ -10,6 +10,11 @@
 import { mapState } from "vuex";
 import filters from '@/plugins/constants';
 export default {
+  data() {
+    return {
+      filters: filters
+    }
+  },
   computed: {
     ...mapState("todo", ["currentFilter"])
   },

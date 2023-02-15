@@ -1,6 +1,5 @@
 <template>
   <section class="task-container">
-    <CardLoader v-if="searchLoading"/>
     <div class="task-area">
       <AddTaskCard />
       <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
@@ -16,7 +15,7 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import filters from '@/plugins/constants';
+import filters from "@/plugins/constants";
 export default {
   data() {
     return {
@@ -38,23 +37,25 @@ export default {
       }
     },
     paginatedCurrentFilter() {
-      if(this.currentFilter === filters.ALL) {
-        return this.todoList
-      } else if(this.currentFilter === filters.INCOMPLETE) {
-        return this.getIncompletedTaskList
-      } else if(this.currentFilter === filters.COMPLETE) {
-        return this.getCompletedTaskList
-      } else {
-        return []
+      switch (this.currentFilter) {
+        case filters.ALL:
+          return this.todoList;
+        case filters.INCOMPLETE:
+          return this.getIncompletedTaskList;
+        case filters.COMPLETE:
+          return this.getCompletedTaskList;
+        default:
+          return [];
       }
     },
     btnText() {
-      if (this.isLoadMoreState) {
-        return `${this.$t("Load")} ${this.$t("More")}`;
-      } else if (this.isShowLessState) {
-        return `${this.$t("Show")} ${this.$t("Less")}`;
-      } else {
-        return "";
+      switch (true) {
+        case this.isLoadMoreState:
+          return `${this.$t("general.load")} ${this.$t("general.more")}`;
+        case this.isShowLessState:
+          return `${this.$t("general.show")} ${this.$t("general.less")}`;
+        default:
+          return "";
       }
     },
     isLoadMoreState() {
@@ -76,7 +77,9 @@ export default {
           this.lastIndex + this.limit,
           this.list.length
         );
-      } else if (this.isShowLessState) {
+        return
+      }
+      if (this.isShowLessState) {
         this.lastIndex = this.limit;
       }
     },
@@ -91,8 +94,5 @@ export default {
 .task-area {
   display: flex;
   flex-wrap: wrap;
-}
-.task-container{
-  position: relative;
 }
 </style>

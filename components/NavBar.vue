@@ -20,23 +20,25 @@
 </template>
 
 <script>
+import debounce from '@/helpers/debounce'
 export default {
   data() {
     return {
       searchText: "",
-      searchTimeout: "",
+      //searchTimeout: "",
       logo: require("@/assets/img/leaf.svg"),
       searchIcon: require("@/assets/img/search.svg"),
     }
   },
   methods: {
-    search() {
-      clearTimeout(this.searchTimeout)
-      this.searchTimeout = setTimeout(this.performSearch, 800)
+    search(event) {
+      this.debouncedSearch(event.target.value)
     },
-    performSearch() {
-      this.$store.dispatch("todo/search", this.searchText)
-    },
+
+    debouncedSearch: debounce(function (value) {
+      this.$store.dispatch("todo/search", value)
+    }, 300),
+
     switchLanguage(event) {
       this.$i18n.setLocale(event.target.value)
     }

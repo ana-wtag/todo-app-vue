@@ -4,7 +4,7 @@
     <textarea v-model="todoText"></textarea>
     <div class="error-msg" v-if="showError">{{ $t("Title is required!") }}</div>
     <div class="card-footer">
-      <button @click="addTask" class="mr-19">{{ $t("Add Task") }}</button>
+      <button @click="addTask" class="mr-19">{{ $t("task.add") }}</button>
       <DeleteIcon class="delete-icon" @click="clearField"/>
     </div>
   </div>
