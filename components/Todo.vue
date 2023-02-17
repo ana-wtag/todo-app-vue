@@ -3,9 +3,9 @@
     <CardLoader v-if="todoItem.loading" />
     <template v-if="isEdit">
       <textarea v-model="taskText"></textarea>
-      <div class="error-msg" v-if="showError">
+      <!-- <div class="error-msg" v-if="showError">
         {{ $t("Title is required!") }}
-      </div>
+      </div> -->
     </template>
     <template v-else>
       <div class="card-header" :class="{ 'mark-done': todoItem.done }">
