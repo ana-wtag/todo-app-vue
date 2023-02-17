@@ -66,7 +66,7 @@ textarea {
   width: 390px;
 }
 .swal-text {
-  color: white;
+  color: $orange;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
