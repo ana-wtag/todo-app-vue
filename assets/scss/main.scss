@@ -99,15 +99,29 @@ div#__layout {
 }
 
 /** Responsive Design **/
-
-@media only screen and (max-width: 768px) {
+// tablet screen
+@media only screen and (max-width: 769px) {
   .card {
-    width: 46.5%;
+    width: 48.25%;
   }
-  .card:nth-child(3n) {
+  .card:nth-child(2n+1) {
     margin-right: 3.5%;
   }
   .card:nth-child(2n) {
-    margin-right: 0;
+    margin-right: 0%;
+  }
+}
+
+// mobile scren
+@media only screen and (max-width: 426px) {
+  .card {
+    width: 100%;
+    margin: auto
+  }
+  .card:nth-child(2n+1) {
+    margin: 4% auto 0%;
+  }
+  .card:nth-child(2n) {
+    margin: 4% auto 0%;
   }
 }
