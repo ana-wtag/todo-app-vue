@@ -34,14 +34,15 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/svg'
+    '@nuxtjs/svg',
+    '@nuxtjs/style-resources'
   ],
 
   styleResources: {
-    // scss: [
-    //   '~assets/scss/mixins.scss',
-    //   '~assets/scss/variables.scss'
-    // ]
+    scss: [
+      '~assets/scss/mixins.scss',
+      '~assets/scss/variables.scss'
+    ]
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules

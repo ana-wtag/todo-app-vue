@@ -18,18 +18,20 @@
 
     <div class="card-footer">
       <div class="card-footer-left">
-        <button v-if="isEdit" @click="onSave">{{ $t("task.save") }}</button>
+        <button v-if="isEdit" @click="onSave" class="mr-19">
+          {{ $t("task.save") }}
+        </button>
 
         <template v-if="!todoItem.done">
-            <span class="tick-icon mr-19" @click="markDone">
+          <span class="tick-icon mr-19" @click="markDone">
             <TickIcon />
           </span>
           <span class="pencil-icon mr-19" v-if="!isEdit" @click="editTask">
             <PencilIcon />
           </span>
         </template>
-        
-        <span class="delete-icon mr-19" @click="deleteTask">
+
+        <span class="delete-icon" @click="deleteTask">
           <DeleteIcon />
         </span>
       </div>
@@ -38,7 +40,6 @@
           completedTime
         }}</span>
       </div>
-
     </div>
   </div>
 </template>
@@ -54,7 +55,7 @@ export default {
   components: {
     TickIcon,
     PencilIcon,
-    DeleteIcon
+    DeleteIcon,
   },
   props: {
     todoItem: {
@@ -65,25 +66,31 @@ export default {
   computed: {
     ...mapState("todo", ["loading"]),
     completedTime() {
-      return this.$t("task.completed") + ` ${this.todoItem.completedIn} `+ this.$t("general.ago")
+      return (
+        this.$t("task.completed") +
+        ` ${this.todoItem.completedIn} ` +
+        this.$t("general.ago")
+      );
     },
     createdTime() {
-      return `${this.$t("task.created")} ${this.$t("general.at")} ${this.formatDate(this.todoItem.createdAt, "dd.MM.yy")}`
-    }
+      return `${this.$t("task.created")} ${this.$t(
+        "general.at"
+      )} ${this.formatDate(this.todoItem.createdAt, "dd.MM.yy")}`;
+    },
   },
   data() {
     return {
       formatDate: format,
       isEdit: false,
       showError: false,
-      taskText: '',
+      taskText: "",
     };
   },
   methods: {
     async deleteTask() {
       if (this.isEdit) {
         this.isEdit = false;
-        this.showError = false
+        this.showError = false;
       } else {
         await this.$store.dispatch("todo/removeTask", this.todoItem);
       }
@@ -91,8 +98,8 @@ export default {
     markDone() {
       if (this.isEdit) {
         this.onSave();
-        if(this.showError) {
-          return
+        if (this.showError) {
+          return;
         }
       }
       const completedIn = formatDistance(new Date(), this.todoItem.createdAt);
@@ -103,7 +110,7 @@ export default {
       this.$store.dispatch("todo/markDone", task);
     },
     editTask() {
-      this.taskText = this.todoItem.text
+      this.taskText = this.todoItem.text;
       this.isEdit = true;
     },
     onSave() {
@@ -124,8 +131,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .mark-done {
-      text-decoration: line-through;
-      color: #0BC375;
-    }
+.card-footer-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.card-subheader span {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #bbbdd0;
+}
+.mark-done {
+  text-decoration: line-through;
+  color: #0bc375;
+}
+.completed-badge{
+  background: #7A8DFD;
+  border-radius: 5px;
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+padding: 5px 12px;
+color: #FFFFFF;
+}
 </style>

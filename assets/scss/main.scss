@@ -1,6 +1,14 @@
+* {
+  box-sizing: $box-sizing;
+}
+
+div#__layout {
+  background: #f8f9ff;
+}
+
 .container {
   box-sizing: $box-sizing;
-  width: 69%;
+  width: 80.29%;
   margin: auto;
   font-family: "Roboto";
 }
@@ -12,22 +20,24 @@
   margin-bottom: 9px;
   text-transform: capitalize;
 }
+.card:nth-child(3n) {
+  margin-right: 0;
+}
 .card {
   position: relative;
-  //height: 163px;
-  //max-width: 382px;
-  left: 0px;
-  top: 0px;
+  height: 163px;
+  width: 31%;
   border-radius: $border-radius;
   border: 1px solid #dde2ff;
   padding: 15px 15px 19px;
   box-sizing: $box-sizing;
-  margin: 34px 34px 0px 0px;
+  margin: 3.5% 3.5% 0% 0%;
+  background: #ffffff;
 
   textarea {
     border: 3px solid #d1d8ff;
     height: 80px;
-    width: 351px;
+    width: 100%;
     border-radius: $border-radius;
     box-sizing: $box-sizing;
   }
@@ -45,11 +55,18 @@
   display: flex;
   position: absolute;
   bottom: 22px;
+  align-items: center;
   justify-content: space-between;
   width: 93%;
   button {
     border-radius: $border-radius;
     border: 1px solid #dde2ff;
+    background: #ffffff;
+    height: 36px;
+    width: 91px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
   }
 }
 .delete-icon,
@@ -79,4 +96,18 @@
 }
 .swal-text:first-child {
   margin-top: 16px;
+}
+
+/** Responsive Design **/
+
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 46.5%;
+  }
+  .card:nth-child(3n) {
+    margin-right: 3.5%;
+  }
+  .card:nth-child(2n) {
+    margin-right: 0;
+  }
 }

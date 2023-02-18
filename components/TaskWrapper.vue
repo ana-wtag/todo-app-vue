@@ -94,5 +94,6 @@ export default {
 .task-area {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 </style>
