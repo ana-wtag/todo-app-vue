@@ -18,15 +18,28 @@
 
     <div class="card-footer">
       <div class="card-footer-left">
-        <button v-if="isEdit" @click="onSave" :style="{ 'margin-right': '19px' }">
+        <button
+          v-if="isEdit"
+          @click="onSave"
+          :style="{ 'margin-right': '19px' }"
+        >
           {{ $t("task.save") }}
         </button>
 
         <template v-if="!todoItem.done">
-          <span class="tick-icon" :style="{ 'margin-right': '19px' }" @click="markDone">
+          <span
+            class="tick-icon"
+            :style="{ 'margin-right': '19px' }"
+            @click="markDone"
+          >
             <TickIcon />
           </span>
-          <span class="pencil-icon" :style="{ 'margin-right': '19px' }" v-if="!isEdit" @click="editTask">
+          <span
+            class="pencil-icon"
+            :style="{ 'margin-right': '19px' }"
+            v-if="!isEdit"
+            @click="editTask"
+          >
             <PencilIcon />
           </span>
         </template>
@@ -146,13 +159,13 @@ export default {
   text-decoration: line-through;
   color: #0bc375;
 }
-.completed-badge{
-  background: #7A8DFD;
+.completed-badge {
+  background: #7a8dfd;
   border-radius: 5px;
-font-style: normal;
-font-weight: 700;
-font-size: 12px;
-padding: 5px 12px;
-color: #FFFFFF;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 5px 12px;
+  color: #ffffff;
 }
 </style>
