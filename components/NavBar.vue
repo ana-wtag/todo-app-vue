@@ -54,9 +54,35 @@ export default {
 </script>
 
 <style scoped>
-nav,
 .nav-right {
   display: flex;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+.nav-right input, .nav-right span {
+  margin-right: 19px;
+}
+.nav-right input {
+  width: 50%;
+  border-radius: 5px;
+  border: 3px solid #D1D8FF;
+}
+
+.nav-right select {
+  border-radius: 5px;
+  border: 3px solid #D1D8FF;
+}
+nav {
+  height: 72px;
+  display: flex;
   justify-content: space-between;
+}
+
+.logo span {
+font-size: 36px;
+font-weight: 700;
+color: #7A8DFD;
+
 }
 </style>

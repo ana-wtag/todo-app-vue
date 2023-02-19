@@ -1,9 +1,9 @@
 <template>
-    <section class="container">
+    <section>
         <header>
-            <NavBar />
+            <NavBar class="container"/>
         </header>
-        <main>
+        <main class="container">
             <Nuxt />
         </main>
     </section>
@@ -16,5 +16,9 @@
 </script>
 
 <style lang="scss" scoped>
-    
+header {
+    background: #FFFFFF;
+    border: 1px solid #DDE2FF;
+}
+
 </style>

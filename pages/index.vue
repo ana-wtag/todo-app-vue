@@ -44,6 +44,8 @@ export default {
   font-weight: 700;
   font-size: 30px;
   line-height: 35px;
+  margin-top: 65px;
+  margin-bottom: 28px;
 }
 .btn-area {
   display: flex;

@@ -3,7 +3,7 @@
     
     <div class="task-area">
       <AddTaskCard />
-      <template v-if="paginatedList.length > 0">
+      <template v-if="todoList.length > 0">
         <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
       </template>
       <template v-else>

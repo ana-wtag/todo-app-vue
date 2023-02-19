@@ -2,6 +2,9 @@
   box-sizing: $box-sizing;
 }
 
+body {
+  margin: 0;
+}
 
 div#__layout {
   background: #f8f9ff;
@@ -12,6 +15,7 @@ div#__layout {
   width: 80.29%;
   margin: auto;
   font-family: "Roboto";
+  align-items: center;
 }
 
 .card-header {
