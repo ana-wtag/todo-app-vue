@@ -40,17 +40,28 @@ div#__layout {
     width: 100%;
     border-radius: $border-radius;
     box-sizing: $box-sizing;
+    resize: none;
   }
 }
-.mr-19 {
-  margin-right: 19px;
+
+.success {
+  background: #0BC475 !important;
+  font-family: "Roboto";
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
 }
-.mb-42 {
-  margin-bottom: 42px;
+
+.error {
+  background: #E85F5F !important;
+  font-family: "Roboto";
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
 }
-.mb-19 {
-  margin-bottom: 24px;
-}
+
 .card-footer {
   display: flex;
   position: absolute;
@@ -108,7 +119,7 @@ div#__layout {
     margin-right: 3.5%;
   }
   .card:nth-child(2n) {
-    margin-right: 0%;
+    margin-right: 0;
   }
 }
 
