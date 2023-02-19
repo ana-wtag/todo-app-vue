@@ -6,7 +6,7 @@
     <div class="section-body">
       <CardLoader v-if="searchLoading"/>
     <div class="btn-area">
-      <button @click="showForm">{{ $t("task.create") }}</button>
+      <button @click="showCreateForm">{{ $t("task.create") }}</button>
       <div class="filter-area">
         <FilterButtons />
       </div>
@@ -21,10 +21,10 @@ import { mapState } from "vuex";
 export default {
   layout: "default",
   computed: {
-    ...mapState("todo", ["searchLoading"]),
+    ...mapState("todo", ["searchLoading","todoList"]),
   },
   methods: {
-    showForm() {
+    showCreateForm() {
       this.$store.dispatch("todo/showForm", true);
     },
   },
@@ -34,10 +34,14 @@ export default {
 <style lang="scss" scoped>
 .section-body {
   position: relative;
+  height: 100vh;
+  
 }
 .btn-area {
   display: flex;
   justify-content: space-between;
 }
+
+
 
 </style>

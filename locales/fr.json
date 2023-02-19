@@ -14,5 +14,6 @@
   "general.load": "Charge",
   "general.more": "Suite",
   "general.show": "Spectacle",
-  "general.less": "Moins"
+  "general.less": "Moins",
+  "task.emptyText": "Vous n'avez ajouté aucune tâche. Veuillez en ajouter un."
 }

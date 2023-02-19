@@ -14,5 +14,6 @@
   "general.load": "Load",
   "general.more": "More",
   "general.show": "Show",
-  "general.less": "Less"
+  "general.less": "Less",
+  "task.emptyText": "You didn't add any task. Please add one."
 }

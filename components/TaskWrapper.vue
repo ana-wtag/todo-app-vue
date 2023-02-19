@@ -1,10 +1,17 @@
 <template>
   <section class="task-container">
+    
     <div class="task-area">
       <AddTaskCard />
-      <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
+      <template v-if="paginatedList.length > 0">
+        <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
+      </template>
+      <template v-else>
+        <EmptyTaskPlaceholder class="empty-task-placeholder"
+        />
+        <div class="empty-task-placeholder-text">{{ $t("task.emptyText") }}</div>
+    </template>
     </div>
-
     <div class="load-btn">
       <button v-if="isLoadMoreState || isShowLessState" @click="onLoadBtnClick">
         {{ btnText }}
@@ -16,7 +23,11 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import filters from "@/plugins/constants";
+import EmptyTaskPlaceholder from "@/assets/img/add-files.svg?inline";
 export default {
+  components: {
+    EmptyTaskPlaceholder,
+  },
   data() {
     return {
       firstIndex: 0,
@@ -24,16 +35,21 @@ export default {
     };
   },
   computed: {
-    ...mapState("todo", ["limit","currentFilter", "todoList", "searchText","searchLoading"]),
-    ...mapGetters("todo", [
-      'getCompletedTaskList',
-      'getIncompletedTaskList'
+    ...mapState("todo", [
+      "limit",
+      "currentFilter",
+      "todoList",
+      "searchText",
+      "searchLoading",
     ]),
+    ...mapGetters("todo", ["getCompletedTaskList", "getIncompletedTaskList"]),
     list() {
-      if(this.searchText) {
-        return this.paginatedCurrentFilter.filter(item => item.text.toLowerCase().includes(this.searchText.toLowerCase()))
+      if (this.searchText) {
+        return this.paginatedCurrentFilter.filter((item) =>
+          item.text.toLowerCase().includes(this.searchText.toLowerCase())
+        );
       } else {
-        return this.paginatedCurrentFilter
+        return this.paginatedCurrentFilter;
       }
     },
     paginatedCurrentFilter() {
@@ -77,7 +93,7 @@ export default {
           this.lastIndex + this.limit,
           this.list.length
         );
-        return
+        return;
       }
       if (this.isShowLessState) {
         this.lastIndex = this.limit;
@@ -95,5 +111,16 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+.empty-task-placeholder, .empty-task-placeholder-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.empty-task-placeholder-text {
+  top: 65%;
+  font-weight: 700px;
+  font-size: 24px;
 }
 </style>
