@@ -32,7 +32,6 @@ export default {
   data() {
     return {
       searchText: "",
-      //searchTimeout: "",
       logo: require("@/assets/img/leaf.svg"),
       searchIcon: require("@/assets/img/search.svg"),
     };
