@@ -1,7 +1,7 @@
 const ALL = "All"
 const INCOMPLETE = "Incomplete"
 const COMPLETE = "Complete"
-const LIMIT = 9
+const LIMIT = 3
 const TIMER = 800
 
     

@@ -1,19 +1,22 @@
 <template>
   <section class="task-container">
-    
     <div class="task-area">
       <AddTaskCard />
       <template v-if="todoList.length > 0">
         <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
       </template>
       <template v-else>
-        <EmptyTaskPlaceholder class="empty-task-placeholder"
-        />
-        <div class="empty-task-placeholder-text">{{ $t("task.emptyText") }}</div>
-    </template>
+        <EmptyTaskPlaceholder class="empty-task-placeholder" />
+        <div class="empty-task-placeholder-text">
+          {{ $t("task.emptyText") }}
+        </div>
+      </template>
     </div>
     <div class="load-btn">
-      <button v-if="isLoadMoreState || isShowLessState" @click="onLoadBtnClick">
+      <button
+        v-if="isLoadMoreState || isShowLessState"
+        @click="onLoadBtnClick"
+      >
         {{ btnText }}
       </button>
     </div>
@@ -112,7 +115,20 @@ export default {
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.empty-task-placeholder, .empty-task-placeholder-text {
+.load-btn {
+  text-align: center;
+  margin-top: 66px;
+}
+.load-btn button {
+  height: 36px;
+  width: 117px;
+  background: #32394b;
+  border: 1px solid #dde2ff;
+  border-radius: 5px;
+  color: white;
+}
+.empty-task-placeholder,
+.empty-task-placeholder-text {
   position: absolute;
   top: 50%;
   left: 50%;
