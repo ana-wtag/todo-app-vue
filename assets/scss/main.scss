@@ -51,6 +51,17 @@ div#__layout {
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
+  position: relative
+}
+
+.success::after {
+  position: absolute;
+  content: "\2713";
+  top: 37%;
+    left: 12%;
+  width: 5px;
+  height: 5px;
+  transform: translate(-50%, -50%);
 }
 
 .error {

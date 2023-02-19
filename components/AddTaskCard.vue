@@ -32,7 +32,6 @@ export default {
       swal(text, {
         buttons: false,
         timer: 3000,
-        background: '#E85F5F',
         className: classNm,
       });
     },
