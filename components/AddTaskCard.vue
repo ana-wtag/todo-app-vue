@@ -43,6 +43,7 @@ export default {
         completedIn: null,
       };
       this.$store.dispatch("todo/addTask", todo);
+      this.$store.dispatch("todo/resetSearch", "");
       this.todoText = "";
       this.showError = false
     },
