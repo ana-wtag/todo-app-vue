@@ -10,8 +10,8 @@
       <Transition>
         <input
           type="text"
-          @keyup="search"
-          v-model="searchText"
+          
+          v-model="searchKey"
           v-if="showSearchField"
         />
       </Transition>
@@ -35,20 +35,30 @@
 
 <script>
 import debounce from "@/helpers/debounce";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      searchText: "",
       showSearchField: false,
       logo: require("@/assets/img/leaf.svg"),
       searchIcon: require("@/assets/img/search.svg"),
     };
   },
+  computed: {
+    ...mapState("todo", ["searchText"]),
+    searchKey: {
+      get() {
+        return this.searchText
+      },
+      set(newValue) {
+        this.debouncedSearch(newValue)
+      }
+    }
+  },
   methods: {
     onSearchIconClick() {
       this.showSearchField = !this.showSearchField;
-      this.searchText = "";
-      this.$store.dispatch("todo/resetSearch", this.searchText);
+      this.$store.dispatch("todo/resetSearch", "");
     },
     search(event) {
       this.debouncedSearch(event.target.value);

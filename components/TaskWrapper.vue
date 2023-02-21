@@ -70,6 +70,11 @@ export default {
         : [];
     },
   },
+  watch: {
+    currentFilter() {
+      this.lastIndex = this.limit
+    }
+  },
   methods: {
     onLoadBtnClick() {
       if (this.isLoadMoreState) {
