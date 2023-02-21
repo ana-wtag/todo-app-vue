@@ -32,9 +32,8 @@ export default {
     list() {
       if(this.searchText) {
         return this.paginatedCurrentFilter.filter(item => item.text.toLowerCase().includes(this.searchText.toLowerCase()))
-      } else {
-        return this.paginatedCurrentFilter
       }
+      return this.paginatedCurrentFilter
     },
     paginatedCurrentFilter() {
       switch (this.currentFilter) {
