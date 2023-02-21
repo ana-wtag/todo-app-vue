@@ -50,7 +50,6 @@ export default {
       };
       await this.$store.dispatch("todo/addTask", todo);
       this.showAlert("Changes are saved successfully", "success");
-      this.$store.dispatch("todo/addTask", todo);
       this.$store.dispatch("todo/resetSearch", "");
       this.$store.dispatch("todo/setCurrentFilter", constants.ALL);
       this.todoText = "";
