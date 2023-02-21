@@ -16,6 +16,9 @@ export const actions = {
   toggleSearchLoad({ commit }) {
     commit('toggleSearchLoad')
   },
+  resetSearch({ commit }, searchText) {
+    commit('setSearchText', searchText)
+  },
   search({ commit }, searchText) {
     setTimeout(() => {
       commit('toggleSearchLoad')

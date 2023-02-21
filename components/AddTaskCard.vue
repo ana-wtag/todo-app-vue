@@ -14,6 +14,7 @@
 import { mapState } from "vuex";
 import DeleteIcon from "@/assets/img/delete.svg?inline";
 import swal from 'sweetalert'
+import constants from '@/plugins/constants';
 
 export default {
   components: {
@@ -48,6 +49,9 @@ export default {
         buttons: false,
         timer: 3000
       });
+      this.$store.dispatch("todo/addTask", todo);
+      this.$store.dispatch("todo/resetSearch", "");
+      this.$store.dispatch("todo/setCurrentFilter", constants.ALL);
       this.todoText = "";
       this.showError = false
     },
