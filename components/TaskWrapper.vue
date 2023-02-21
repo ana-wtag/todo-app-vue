@@ -47,13 +47,10 @@ export default {
     ]),
     ...mapGetters("todo", ["getCompletedTaskList", "getIncompletedTaskList"]),
     list() {
-      if (this.searchText) {
-        return this.paginatedCurrentFilter.filter((item) =>
-          item.text.toLowerCase().includes(this.searchText.toLowerCase())
-        );
-      } else {
-        return this.paginatedCurrentFilter;
+      if(this.searchText) {
+        return this.paginatedCurrentFilter.filter(item => item.text.toLowerCase().includes(this.searchText.toLowerCase()))
       }
+      return this.paginatedCurrentFilter
     },
     paginatedCurrentFilter() {
       switch (this.currentFilter) {
@@ -88,6 +85,11 @@ export default {
         ? this.list.slice(this.firstIndex, this.lastIndex)
         : [];
     },
+  },
+  watch: {
+    currentFilter() {
+      this.lastIndex = this.limit
+    }
   },
   methods: {
     onLoadBtnClick() {
