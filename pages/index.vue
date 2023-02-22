@@ -36,7 +36,7 @@ export default {
 <style lang="scss" scoped>
 .section-body {
   position: relative;
-  height: 100vh;
+  //height: 100vh;
 }
 
 .section-head h4 {

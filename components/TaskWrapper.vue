@@ -13,10 +13,7 @@
       </template>
     </div>
     <div class="load-btn">
-      <button
-        v-if="isLoadMoreState || isShowLessState"
-        @click="onLoadBtnClick"
-      >
+      <button v-if="isLoadMoreState || isShowLessState" @click="onLoadBtnClick">
         {{ btnText }}
       </button>
     </div>
@@ -47,10 +44,12 @@ export default {
     ]),
     ...mapGetters("todo", ["getCompletedTaskList", "getIncompletedTaskList"]),
     list() {
-      if(this.searchText) {
-        return this.paginatedCurrentFilter.filter(item => item.text.toLowerCase().includes(this.searchText.toLowerCase()))
+      if (this.searchText) {
+        return this.paginatedCurrentFilter.filter((item) =>
+          item.text.toLowerCase().includes(this.searchText.toLowerCase())
+        );
       }
-      return this.paginatedCurrentFilter
+      return this.paginatedCurrentFilter;
     },
     paginatedCurrentFilter() {
       switch (this.currentFilter) {
@@ -88,8 +87,8 @@ export default {
   },
   watch: {
     currentFilter() {
-      this.lastIndex = this.limit
-    }
+      this.lastIndex = this.limit;
+    },
   },
   methods: {
     onLoadBtnClick() {
@@ -132,13 +131,15 @@ export default {
 .empty-task-placeholder,
 .empty-task-placeholder-text {
   position: absolute;
-  top: 50%;
+  //top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin-top: 50vh;
 }
 .empty-task-placeholder-text {
-  top: 65%;
+  //top: 65%;
   font-weight: 700px;
   font-size: 24px;
+  margin-top: 55vh;
 }
 </style>
