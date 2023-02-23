@@ -10,8 +10,8 @@
       <Transition>
         <input
           type="text"
-          
-          v-model="searchKey"
+          @input="search"
+          :value="searchText"
           v-if="showSearchField"
         />
       </Transition>
@@ -46,14 +46,6 @@ export default {
   },
   computed: {
     ...mapState("todo", ["searchText"]),
-    searchKey: {
-      get() {
-        return this.searchText
-      },
-      set(newValue) {
-        this.debouncedSearch(newValue)
-      }
-    }
   },
   methods: {
     onSearchIconClick() {
