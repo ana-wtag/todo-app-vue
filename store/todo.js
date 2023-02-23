@@ -7,10 +7,25 @@ export const state = () => ({
   loading: false,
   limit: constants.LIMIT,
   showForm: false,
+  searchLoading: false,
+  searchText: "",
   currentFilter: constants.ALL
 });
 
 export const actions = {
+  toggleSearchLoading({ commit }) {
+    commit('toggleSearchLoading')
+  },
+  resetSearch({ commit }, searchText) {
+    commit('setSearchText', searchText)
+  },
+  search({ commit }, searchText) {
+    setTimeout(() => {
+      commit('toggleSearchLoading')
+      commit('setSearchText', searchText)
+    }, 800);
+    commit('toggleSearchLoading')
+  },
   setCurrentFilter({ commit }, filter) {
     commit("setCurrentFilter", filter)
   },
@@ -44,6 +59,12 @@ export const actions = {
 };
 
 export const mutations = {
+  toggleSearchLoading(state) {
+    state.searchLoading = !state.searchLoading
+  },
+  setSearchText(state, text) {
+    state.searchText = text
+  },
   setCurrentFilter(state, filter) {
     state.currentFilter = filter
   },

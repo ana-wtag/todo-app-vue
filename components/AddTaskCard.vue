@@ -13,6 +13,7 @@
 <script>
 import { mapState } from "vuex";
 import DeleteIcon from "@/assets/img/delete.svg?inline";
+import constants from '@/plugins/constants';
 
 export default {
   components: {
@@ -43,6 +44,8 @@ export default {
         completedIn: null,
       };
       this.$store.dispatch("todo/addTask", todo);
+      this.$store.dispatch("todo/resetSearch", "");
+      this.$store.dispatch("todo/setCurrentFilter", constants.ALL);
       this.todoText = "";
       this.showError = false
     },

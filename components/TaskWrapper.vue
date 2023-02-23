@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="task-container">
     <div class="task-area">
       <AddTaskCard />
       <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
@@ -24,8 +24,17 @@ export default {
     };
   },
   computed: {
-    ...mapState("todo", ["limit", "currentFilter", "todoList"]),
-    ...mapGetters("todo", ["getCompletedTaskList", "getIncompletedTaskList"]),
+    ...mapState("todo", ["limit","currentFilter", "todoList", "searchText","searchLoading"]),
+    ...mapGetters("todo", [
+      'getCompletedTaskList',
+      'getIncompletedTaskList'
+    ]),
+    list() {
+      if(this.searchText) {
+        return this.paginatedCurrentFilter.filter(item => item.text.toLowerCase().includes(this.searchText.toLowerCase()))
+      }
+      return this.paginatedCurrentFilter
+    },
     paginatedCurrentFilter() {
       switch (this.currentFilter) {
         case filters.ALL:
@@ -49,23 +58,28 @@ export default {
       }
     },
     isLoadMoreState() {
-      return this.paginatedCurrentFilter.length > this.paginatedList.length;
+      return this.list.length > this.paginatedList.length;
     },
     isShowLessState() {
-      return this.paginatedList.length > this.limit;
+      return this.list.length > this.limit;
     },
     paginatedList() {
-      return this.paginatedCurrentFilter.length > 0
-        ? this.paginatedCurrentFilter.slice(this.firstIndex, this.lastIndex)
+      return this.list.length > 0
+        ? this.list.slice(this.firstIndex, this.lastIndex)
         : [];
     },
+  },
+  watch: {
+    currentFilter() {
+      this.lastIndex = this.limit
+    }
   },
   methods: {
     onLoadBtnClick() {
       if (this.isLoadMoreState) {
         this.lastIndex = Math.min(
           this.lastIndex + this.limit,
-          this.paginatedCurrentFilter.length
+          this.list.length
         );
         return
       }
