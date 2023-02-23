@@ -131,15 +131,33 @@ export default {
 .empty-task-placeholder,
 .empty-task-placeholder-text {
   position: absolute;
-  //top: 50%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 50vh;
+  width: 61%;
+  text-align: center;
 }
 .empty-task-placeholder-text {
-  //top: 65%;
   font-weight: 700px;
   font-size: 24px;
-  margin-top: 55vh;
+  margin-top: 63vh;
+}
+
+@media only screen and (max-width: 769px) {
+  .empty-task-placeholder {
+    //width: 50%;
+  }
+  .empty-task-placeholder-text {
+    margin-top: 66vh;
+  }
+}
+
+// mobile scren
+@media only screen and (max-width: 426px) {
+  .empty-task-placeholder-text {
+    font-size: 20px;
+    margin-top: 64vh;
+  }
 }
 </style>

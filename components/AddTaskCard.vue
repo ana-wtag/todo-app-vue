@@ -3,7 +3,9 @@
     <CardLoader v-if="loading" />
     <textarea v-model="todoText"></textarea>
     <div class="card-footer">
-      <button @click="addTask" :style="{ 'margin-right': '19px' }">{{ $t("task.add") }}</button>
+      <button @click="addTask" :style="{ 'margin-right': '19px' }">
+        {{ $t("task.add") }}
+      </button>
       <DeleteIcon class="delete-icon" @click="clearField" />
     </div>
   </div>
@@ -12,8 +14,8 @@
 <script>
 import { mapState } from "vuex";
 import DeleteIcon from "@/assets/img/delete.svg?inline";
-import swal from 'sweetalert'
-import constants from '@/plugins/constants';
+import swal from "sweetalert";
+import constants from "@/plugins/constants";
 
 export default {
   components: {
@@ -67,5 +69,12 @@ export default {
   bottom: 14px;
   justify-content: flex-start;
 }
+/** Responsive Design **/
+// tablet screen
+@media only screen and (max-width: 769px) {
+}
 
+// mobile scren
+@media only screen and (max-width: 426px) {
+}
 </style>

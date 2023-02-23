@@ -1,24 +1,24 @@
 <template>
-    <section>
-        <header>
-            <NavBar class="container"/>
-        </header>
-        <main class="container">
-            <Nuxt />
-        </main>
-    </section>
+  <section class="wrapper">
+    <header>
+      <NavBar class="container" />
+    </header>
+    <main class="container">
+      <Nuxt />
+    </main>
+  </section>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {};
 </script>
 
 <style lang="scss" scoped>
-header {
-    background: #FFFFFF;
-    border: 1px solid #DDE2FF;
+.wrapper {
+  background: #f8f9ff;
 }
-
+header {
+  background: #ffffff;
+  border: 1px solid #dde2ff;
+}
 </style>

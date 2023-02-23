@@ -52,8 +52,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   .create-btn {
-    height: 36px;
-    width: 104px;
+    padding: 8px 28px;
     border-radius: 5px;
     border: none;
     background: #7a8dfd;
@@ -69,6 +68,38 @@ export default {
       left: 13%;
       top: 22%;
     }
+  }
+}
+
+/** Responsive Design **/
+// tablet screen
+@media only screen and (max-width: 769px) {
+  .btn-area .create-btn {
+    padding: 8px 20px;
+  }
+}
+
+// mobile scren
+@media only screen and (max-width: 426px) {
+  .btn-area .create-btn {
+    padding: 8px 10px;
+
+    span::after {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 376px) {
+  .btn-area .create-btn {
+    padding: 8px 10px;
+  }
+}
+
+@media only screen and (max-width: 321px) {
+  .btn-area .create-btn {
+    padding: 5px 5px;
+    font-size: 14px;
   }
 }
 </style>
