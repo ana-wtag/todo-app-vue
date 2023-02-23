@@ -38,23 +38,34 @@ export default {
         className: classNm,
       });
     },
-    async addTask() {
+    validate() {
       if (!this.todoText) {
         this.showAlert("Title is required!", "error");
-        return;
+        return false;
       }
-      const createdAt = new Date();
-      const todo = {
-        text: this.todoText,
-        done: false,
-        createdAt: createdAt,
-        completedIn: null,
-      };
-      await this.$store.dispatch("todo/addTask", todo);
-      this.showAlert("Changes are saved successfully", "success");
-      this.$store.dispatch("todo/resetSearch", "");
-      this.$store.dispatch("todo/setCurrentFilter", constants.ALL);
-      this.todoText = "";
+      if (this.todoText.length > constants.MAXLENGTH) {
+        this.showAlert("Title is too long!", "error");
+        return false;
+      }
+      const sanitizedInput = this.todoText.replace(/<[^>]+>/g, '');
+      this.todoText = sanitizedInput;
+      return true;
+    },
+    async addTask() {
+      if (this.validate()) {
+        const createdAt = new Date();
+        const todo = {
+          text: this.todoText,
+          done: false,
+          createdAt: createdAt,
+          completedIn: null,
+        };
+        await this.$store.dispatch("todo/addTask", todo);
+        this.showAlert("Changes are saved successfully", "success");
+        this.$store.dispatch("todo/resetSearch", "");
+        this.$store.dispatch("todo/setCurrentFilter", constants.ALL);
+        this.todoText = "";
+      }
     },
     clearField() {
       this.todoText = "";
