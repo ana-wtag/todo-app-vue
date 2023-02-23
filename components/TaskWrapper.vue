@@ -145,9 +145,6 @@ export default {
 }
 
 @media only screen and (max-width: 769px) {
-  .empty-task-placeholder {
-    //width: 50%;
-  }
   .empty-task-placeholder-text {
     margin-top: 66vh;
   }
