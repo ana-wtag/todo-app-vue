@@ -43,10 +43,6 @@ export default {
         this.showAlert("Title is required!", "error");
         return false;
       }
-      if (this.todoText.length > constants.MAXLENGTH) {
-        this.showAlert("Title is too long!", "error");
-        return false;
-      }
       const sanitizedInput = this.todoText.replace(/<[^>]+>/g, '');
       this.todoText = sanitizedInput;
       return true;
