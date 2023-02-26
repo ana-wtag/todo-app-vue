@@ -1,0 +1,155 @@
+* {
+  box-sizing: $box-sizing;
+}
+
+div#__layout {
+  background: #f8f9ff;
+}
+
+.container {
+  box-sizing: $box-sizing;
+  width: 80.29%;
+  margin: auto;
+  font-family: "Roboto";
+}
+
+.card-header {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  margin-bottom: 9px;
+  text-transform: capitalize;
+}
+.card:nth-child(3n) {
+  margin-right: 0;
+}
+.card {
+  position: relative;
+  height: 163px;
+  width: 31%;
+  border-radius: $border-radius;
+  border: 1px solid #dde2ff;
+  padding: 15px 15px 19px;
+  box-sizing: $box-sizing;
+  margin: 3.5% 3.5% 0% 0%;
+  background: #ffffff;
+
+  textarea {
+    border: 3px solid #d1d8ff;
+    height: 80px;
+    width: 100%;
+    border-radius: $border-radius;
+    box-sizing: $box-sizing;
+    resize: none;
+  }
+}
+
+.success {
+  background: #0BC475 !important;
+  font-family: "Roboto";
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  position: relative
+}
+
+.success::after {
+  position: absolute;
+  content: "\2713";
+  top: 37%;
+    left: 12%;
+  width: 5px;
+  height: 5px;
+  transform: translate(-50%, -50%);
+}
+
+.error {
+  background: #E85F5F !important;
+  font-family: "Roboto";
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.card-footer {
+  display: flex;
+  position: absolute;
+  bottom: 22px;
+  align-items: center;
+  justify-content: space-between;
+  width: 93%;
+  button {
+    border-radius: $border-radius;
+    border: 1px solid #dde2ff;
+    background: #ffffff;
+    height: 36px;
+    width: 91px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+  }
+}
+.delete-icon,
+.tick-icon,
+.pencil-icon {
+  cursor: pointer;
+}
+
+.swal-overlay {
+  background-color: transparent;
+}
+.swal-modal {
+  background-color: #0bc375;
+  border-radius: $border-radius;
+  position: absolute;
+  height: 55px;
+  top: 90px;
+  left: 0px;
+  right: 0px;
+  width: 390px;
+}
+.swal-text {
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+}
+.swal-text:first-child {
+  margin-top: 16px;
+}
+
+/** Responsive Design **/
+@media only screen and (max-width: 1023px) {
+  .container {
+    width: 90%;
+  }
+}
+// tablet screen
+@media only screen and (max-width: 769px) {
+  .card {
+    width: 48.25%;
+  }
+  .card:nth-child(2n+1) {
+    margin-right: 3.5%;
+  }
+  .card:nth-child(2n) {
+    margin-right: 0;
+  }
+}
+
+// mobile scren
+@media only screen and (max-width: 481px) {
+  .card {
+    width: 100%;
+    margin: auto
+  }
+  .card:nth-child(2n+1) {
+    margin: 4% auto 0%;
+  }
+  .card:nth-child(2n) {
+    margin: 4% auto 0%;
+  }
+}
+

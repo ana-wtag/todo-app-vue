@@ -76,6 +76,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+nav,
+.nav-right {
+  display: flex;
+  justify-content: space-between;
+}
 .v-enter-active, .v-leave-active {
   transition: opacity 0.5s ease;
 }

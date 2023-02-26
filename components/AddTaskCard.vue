@@ -1,11 +1,10 @@
 <template>
   <div class="card" v-if="showForm">
-    <CardLoader v-if="loading"/>
+    <CardLoader v-if="loading" />
     <textarea v-model="todoText"></textarea>
-    <div class="error-msg" v-if="showError">{{ $t("Title is required!") }}</div>
     <div class="card-footer">
-      <button @click="addTask" class="mr-19">{{ $t("task.add") }}</button>
-      <DeleteIcon class="delete-icon" @click="clearField"/>
+      <button @click="addTask" :style="{ 'margin-right': '19px' }">{{ $t("task.add") }}</button>
+      <DeleteIcon class="delete-icon" @click="clearField" />
     </div>
   </div>
 </template>
@@ -18,26 +17,31 @@ import constants from '@/plugins/constants';
 
 export default {
   components: {
-    DeleteIcon
+    DeleteIcon,
   },
-    data() {
+  data() {
     return {
       todoText: "",
-      showError: false
     };
   },
   computed: {
-    ...mapState("todo", ["loading","showForm"])
+    ...mapState("todo", ["loading", "showForm"]),
   },
-  props: {
-  },
+  props: {},
   methods: {
+    showAlert(text, classNm) {
+      swal(text, {
+        buttons: false,
+        timer: 3000,
+        className: classNm,
+      });
+    },
     async addTask() {
       if (!this.todoText) {
-        this.showError = true
-        return
+        this.showAlert("Title is required!", "error");
+        return;
       }
-      const createdAt = new Date()
+      const createdAt = new Date();
       const todo = {
         text: this.todoText,
         done: false,
@@ -45,23 +49,17 @@ export default {
         completedIn: null,
       };
       await this.$store.dispatch("todo/addTask", todo);
-      swal('Changes are saved successfully', {
-        buttons: false,
-        timer: 3000
-      });
-      this.$store.dispatch("todo/addTask", todo);
+      this.showAlert("Changes are saved successfully", "success");
       this.$store.dispatch("todo/resetSearch", "");
       this.$store.dispatch("todo/setCurrentFilter", constants.ALL);
       this.todoText = "";
-      this.showError = false
     },
     clearField() {
       this.todoText = "";
-      this.$store.dispatch("todo/showForm",false)
-      this.showError = false
-    }
-  }
-}
+      this.$store.dispatch("todo/showForm", false);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -69,4 +67,5 @@ export default {
   bottom: 14px;
   justify-content: flex-start;
 }
+
 </style>

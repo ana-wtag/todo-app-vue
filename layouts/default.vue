@@ -16,8 +16,5 @@
 </script>
 
 <style lang="scss" scoped>
-    nav, .nav-right {
-        display: flex;
-        justify-content: space-between;
-    }
+    
 </style>
