@@ -79,7 +79,7 @@ export const mutations = {
     state.currentFilter = filter
   },
   addTask(state, task) {
-    state.todoList.push({
+    state.todoList.unshift({
       id: state.taskId,
       text: task.text,
       done: task.done,
