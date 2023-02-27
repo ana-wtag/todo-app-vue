@@ -14,16 +14,18 @@
       <span class="search-icon" @click="onSearchIconClick">
         <img :src="searchIcon" />
       </span>
-      <select @change="switchLanguage">
-        <option
-          :selected="item.code === $i18n.defaultLocale"
-          v-for="item in $i18n.locales"
-          :key="item.code"
-          :value="item.code"
-        >
-          {{ item.name }}
-        </option>
-      </select>
+      <div class="select">
+        <select @change="switchLanguage">
+          <option
+            :selected="item.code === $i18n.defaultLocale"
+            v-for="item in $i18n.locales"
+            :key="item.code"
+            :value="item.code"
+          >
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
     </div>
   </nav>
 </template>
@@ -75,6 +77,10 @@ export default {
   display: flex;
   justify-content: flex-end;
   width: 50%;
+
+  select {
+    padding: 3px 3px;
+  }
 }
 
 .nav-right input,
@@ -87,10 +93,6 @@ export default {
   border: 3px solid #d1d8ff;
 }
 
-.nav-right select {
-  border-radius: 5px;
-  border: 3px solid #d1d8ff;
-}
 nav {
   height: 72px;
   display: flex;
@@ -121,7 +123,7 @@ nav {
 }
 
 // mobile scren
-@media only screen and (max-width: 426px) {
+@media only screen and (max-width: 481px) {
   .nav-right input,
   .nav-right span {
     margin-right: 2px;
@@ -132,8 +134,5 @@ nav {
   .logo span {
     display: none;
   }
-}
-
-@media only screen and (max-width: 426px) {
 }
 </style>

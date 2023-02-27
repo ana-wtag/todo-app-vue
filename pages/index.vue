@@ -80,7 +80,7 @@ export default {
 }
 
 // mobile scren
-@media only screen and (max-width: 426px) {
+@media only screen and (max-width: 481px) {
   .btn-area .create-btn {
     padding: 8px 10px;
 
@@ -97,9 +97,5 @@ export default {
 }
 
 @media only screen and (max-width: 321px) {
-  .btn-area .create-btn {
-    padding: 5px 5px;
-    font-size: 14px;
-  }
 }
 </style>

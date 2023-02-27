@@ -28,25 +28,21 @@ div#__layout {
 .card-header {
   font-weight: 700;
   font-size: 24px;
-  line-height: 28px;
   margin-bottom: 9px;
   text-transform: capitalize;
   word-wrap: break-word;
-  max-height: 56px;
-  overflow: hidden;
   line-height: 28px;
-  text-overflow: ellipsis;
 }
 .card:nth-child(3n) {
   margin-right: 0;
 }
 .card {
   position: relative;
-  height: 163px;
+  min-height: 163px;
   width: 31%;
   border-radius: $border-radius;
   border: 1px solid #dde2ff;
-  padding: 15px 15px 19px;
+  padding: 15px 15px 52px;
   box-sizing: $box-sizing;
   margin: 3.5% 3.5% 0% 0%;
   background: #ffffff;
@@ -93,7 +89,7 @@ div#__layout {
 .card-footer {
   display: flex;
   position: absolute;
-  bottom: 22px;
+  bottom: 2%;
   align-items: center;
   justify-content: space-between;
   width: 93%;
@@ -137,14 +133,15 @@ div#__layout {
   margin-top: 16px;
 }
 
+select {
+  border-radius: 5px;
+  border: 3px solid #d1d8ff;
+}
 /** Responsive Design **/
 @media only screen and (max-width: 1023px) {
   .container {
     width: 90%;
   }
-}
-// tablet screen
-@media only screen and (max-width: 769px) {
   .card {
     width: 48.25%;
   }
@@ -155,9 +152,19 @@ div#__layout {
     margin-right: 0;
   }
 }
-
-// mobile scren
-@media only screen and (max-width: 481px) {
+// tablet screen
+// @media only screen and (max-width: 769px) {
+//   .card {
+//     width: 48.25%;
+//   }
+//   .card:nth-child(2n + 1) {
+//     margin-right: 3.5%;
+//   }
+//   .card:nth-child(2n) {
+//     margin-right: 0;
+//   }
+// }
+@media only screen and (max-width: 641px) {
   .card {
     width: 100%;
     margin: auto;
@@ -168,6 +175,10 @@ div#__layout {
   .card:nth-child(2n) {
     margin: 4% auto 0%;
   }
+}
+
+// mobile scren
+@media only screen and (max-width: 481px) {
   .swal-modal {
     width: 80%;
   }

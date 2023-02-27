@@ -52,12 +52,12 @@ export default {
       {
         code: 'en',
         file: 'en.json',
-        name: 'English'
+        name: 'en'
       },
       {
         code: 'fr',
         file: 'fr.json',
-        name: 'French'
+        name: 'fr'
       },
     ],
     langDir: 'locales/',
