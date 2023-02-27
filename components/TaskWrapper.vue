@@ -154,7 +154,17 @@ export default {
 @media only screen and (max-width: 426px) {
   .empty-task-placeholder-text {
     font-size: 20px;
-    margin-top: 64vh;
+    //margin-top: 64vh;
+  }
+}
+
+@media only screen and (max-width: 321px) {
+  .empty-task-placeholder,
+  .empty-task-placeholder-text {
+    margin-top: 41vh;
+  }
+  .empty-task-placeholder-text {
+    margin-top: 58vh;
   }
 }
 </style>
