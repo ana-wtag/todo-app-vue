@@ -134,37 +134,39 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin-top: 50vh;
+  margin-top: 44vh;
   width: 61%;
   text-align: center;
 }
 .empty-task-placeholder-text {
   font-weight: 700px;
   font-size: 24px;
-  margin-top: 63vh;
+  margin-top: 60vh;
 }
 
 @media only screen and (max-width: 769px) {
   .empty-task-placeholder-text {
-    margin-top: 66vh;
+    font-size: 18px;
+    margin-top: 62vh;
+  }
+  .empty-task-placeholder,
+  .empty-task-placeholder-text {
+    width: 60%;
   }
 }
 
 // mobile scren
 @media only screen and (max-width: 426px) {
-  .empty-task-placeholder-text {
-    font-size: 20px;
-    //margin-top: 64vh;
-  }
-}
-
-@media only screen and (max-width: 321px) {
-  .empty-task-placeholder,
-  .empty-task-placeholder-text {
+  .empty-task-placeholder {
     margin-top: 41vh;
   }
   .empty-task-placeholder-text {
+    font-size: 20px;
     margin-top: 58vh;
+  }
+  .empty-task-placeholder,
+  .empty-task-placeholder-text {
+    width: 83%;
   }
 }
 </style>
