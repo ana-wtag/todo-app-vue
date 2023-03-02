@@ -28,7 +28,7 @@ div#__layout {
 .card-header {
   font-weight: 700;
   font-size: 24px;
-  margin-bottom: 9px;
+  margin-bottom: 15px;
   text-transform: capitalize;
   word-wrap: break-word;
   line-height: 28px;
@@ -89,7 +89,7 @@ div#__layout {
 .card-footer {
   display: flex;
   position: absolute;
-  bottom: 2%;
+  bottom: 14px;
   align-items: center;
   justify-content: space-between;
   width: 93%;
@@ -136,6 +136,9 @@ div#__layout {
 select {
   border-radius: 5px;
   border: 3px solid #d1d8ff;
+}
+section.task-container {
+  padding-bottom: 29px;
 }
 /** Responsive Design **/
 @media only screen and (max-width: 1023px) {

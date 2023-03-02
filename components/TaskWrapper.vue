@@ -6,9 +6,11 @@
         <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
       </template>
       <template v-else>
-        <EmptyTaskPlaceholder class="empty-task-placeholder" />
-        <div class="empty-task-placeholder-text">
-          {{ $t("task.emptyText") }}
+        <div class="empty-task-placeholder">
+          <EmptyTaskPlaceholder class="" />
+          <div class="empty-task-placeholder-text">
+            {{ $t("task.emptyText") }}
+          </div>
         </div>
       </template>
     </div>
@@ -128,45 +130,23 @@ export default {
   border-radius: 5px;
   color: white;
 }
-.empty-task-placeholder,
-.empty-task-placeholder-text {
+.empty-task-placeholder {
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 44vh;
-  width: 61%;
+  transform: translate(-50%, 50%);
+  margin: auto;
   text-align: center;
+  width: 100%;
 }
 .empty-task-placeholder-text {
   font-weight: 700px;
   font-size: 24px;
-  margin-top: 60vh;
-}
-
-@media only screen and (max-width: 769px) {
-  .empty-task-placeholder-text {
-    font-size: 18px;
-    margin-top: 62vh;
-  }
-  .empty-task-placeholder,
-  .empty-task-placeholder-text {
-    width: 60%;
-  }
 }
 
 // mobile scren
-@media only screen and (max-width: 426px) {
-  .empty-task-placeholder {
-    margin-top: 41vh;
-  }
+@media only screen and (max-width: 321px) {
   .empty-task-placeholder-text {
     font-size: 20px;
-    margin-top: 58vh;
-  }
-  .empty-task-placeholder,
-  .empty-task-placeholder-text {
-    width: 83%;
   }
 }
 </style>
