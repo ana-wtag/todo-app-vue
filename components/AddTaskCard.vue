@@ -13,6 +13,7 @@
 <script>
 import { mapState } from "vuex";
 import DeleteIcon from "@/assets/img/delete.svg?inline";
+import swal from 'sweetalert'
 import constants from '@/plugins/constants';
 
 export default {
@@ -31,7 +32,7 @@ export default {
   props: {
   },
   methods: {
-    addTask() {
+    async addTask() {
       if (!this.todoText) {
         this.showError = true
         return
@@ -43,6 +44,11 @@ export default {
         createdAt: createdAt,
         completedIn: null,
       };
+      await this.$store.dispatch("todo/addTask", todo);
+      swal('Changes are saved successfully', {
+        buttons: false,
+        timer: 3000
+      });
       this.$store.dispatch("todo/addTask", todo);
       this.$store.dispatch("todo/resetSearch", "");
       this.$store.dispatch("todo/setCurrentFilter", constants.ALL);

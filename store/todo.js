@@ -29,14 +29,16 @@ export const actions = {
   setCurrentFilter({ commit }, filter) {
     commit("setCurrentFilter", filter)
   },
-
   addTask({ commit }, task) {
-    commit("incrementTaskId");
-    setTimeout(() => {
-      commit("toggleLoad");
-      commit("addTask", task);
-    }, constants.TIMER);
-    commit("toggleLoad");
+    return new Promise((resolve, reject) => {
+      commit("incrementTaskId")
+      commit("toggleLoad")
+      setTimeout(() => {
+        commit("addTask", task)
+        commit("toggleLoad")
+        resolve()
+      }, constants.TIMER);
+    })
   },
   editTask({ commit, getters }, task) {
     const item = getters.getTaskById(task.id);
@@ -46,8 +48,16 @@ export const actions = {
     }, constants.TIMER);
     commit("toggleTaskLoad", item);
   },
+
   removeTask({ commit }, task) {
-    commit("removeTask", task);
+    return new Promise((resolve, reject) => {
+      commit("toggleTaskLoad", task)
+      setTimeout(() => {
+        commit("removeTask", task);
+        commit("toggleTaskLoad", task)
+        resolve()
+      }, 800);
+    })
   },
   showForm({ commit }, value) {
     commit("showForm", value);

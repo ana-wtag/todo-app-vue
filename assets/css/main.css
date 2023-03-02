@@ -51,3 +51,27 @@ textarea {
 .pencil-icon {
   cursor: pointer;
 }
+
+.swal-overlay {
+  background-color: transparent;
+}
+.swal-modal {
+  background-color: #0bc375;
+  border-radius: 5px;
+  position: absolute;
+  height: 55px;
+  top:90px;
+  left:0px;
+  right:0px;
+  width: 390px;
+}
+.swal-text {
+  color: white;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+}
+.swal-text:first-child {
+  margin-top: 16px;
+}
