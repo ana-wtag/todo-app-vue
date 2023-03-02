@@ -137,6 +137,7 @@ export default {
   margin: auto;
   text-align: center;
   width: 100%;
+  top:50%;
 }
 .empty-task-placeholder-text {
   font-weight: 700px;
