@@ -6,7 +6,7 @@
     </div>
     <div class="nav-right">
       <Transition>
-        <input type="text" v-model="searchKey" v-if="showSearchField" />
+        <input type="text" v-model="searchKey" v-if="showSearchField" data-testid="search-input"/>
       </Transition>
       <!-- for search -->
       <SearchIcon class="search-icon" @click="onSearchIconClick" />
