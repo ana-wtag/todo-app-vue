@@ -25,7 +25,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import filters from "@/plugins/constants";
-import EmptyTaskPlaceholder from "@/assets/img/add-files.svg?inline";
+import EmptyTaskPlaceholder from "@/assets/img/add-files.svg";
 export default {
   components: {
     EmptyTaskPlaceholder,

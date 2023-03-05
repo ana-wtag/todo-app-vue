@@ -58,9 +58,9 @@
 import { formatDistance } from "date-fns";
 import format from "date-fns/format";
 import { mapState } from "vuex";
-import TickIcon from "@/assets/img/tick.svg?inline";
-import PencilIcon from "@/assets/img/pencil.svg?inline";
-import DeleteIcon from "@/assets/img/delete.svg?inline";
+import TickIcon from "@/assets/img/tick.svg";
+import PencilIcon from "@/assets/img/pencil.svg";
+import DeleteIcon from "@/assets/img/delete.svg";
 export default {
   components: {
     TickIcon,

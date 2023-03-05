@@ -1,17 +1,22 @@
 <template>
   <div class="splash-screen">
     <div class="sp-wrapper">
-      <img :src="logo" class="sp-logo" />
+      <!-- <img :src="logo" class="sp-logo" /> -->
+      <SPLogo class="sp-logo"/>
       <span class="project-title">{{ $t("todos") }}</span>
     </div>
   </div>
 </template>
 <script>
+import SPLogo from "@/assets/img/leaf-lg.svg";
 export default {
+  components: {
+    SPLogo
+  },
   name: "SplashScreen",
   data() {
     return {
-      logo: require("@/assets/img/leaf-lg.svg"),
+      //logo: require("@/assets/img/leaf-lg.svg"),
     };
   },
 };

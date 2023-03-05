@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import LoaderIcon from "@/assets/img/loader.svg?inline"
+import LoaderIcon from "@/assets/img/loader.svg"
 export default {
   components: {
     LoaderIcon

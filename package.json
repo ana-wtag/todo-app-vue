@@ -24,7 +24,9 @@
     "uuidv4": "^6.2.13",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
-    "vue-template-compiler": "^2.7.14"
+    "vue-template-compiler": "^2.7.14",
+    "jest-transform-stub": "^2.0.0",
+    "nuxt-svg-loader": "^1.2.0"
   },
   "devDependencies": {
     "@vue/test-utils": "1",

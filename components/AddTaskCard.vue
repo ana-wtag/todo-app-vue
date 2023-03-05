@@ -13,7 +13,7 @@
 
 <script>
 import { mapState } from "vuex";
-import DeleteIcon from "@/assets/img/delete.svg?inline";
+import DeleteIcon from "@/assets/img/delete.svg";
 import swal from "sweetalert";
 import constants from "@/plugins/constants";
 

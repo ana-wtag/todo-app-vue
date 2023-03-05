@@ -1,19 +1,21 @@
 <template>
   <nav>
     <div class="nav-left">
-      <div class="logo">
-        <img :src="logo" />
+      <!-- <div class="logo"> -->
+        <!-- <img :src="logo" /> -->
+        <Logo class="logo"/>
         <span>Todos</span>
-      </div>
+      <!-- </div> -->
     </div>
     <div class="nav-right">
       <Transition>
         <input type="text" v-model="searchKey" v-if="showSearchField" />
       </Transition>
       <!-- for search -->
-      <span class="search-icon" @click="onSearchIconClick">
-        <img :src="searchIcon" />
-      </span>
+      <!-- <span class="search-icon" @click="onSearchIconClick"> -->
+        <!-- <img :src="searchIcon" /> -->
+        <SearchIcon class="search-icon" @click="onSearchIconClick"/>
+      <!-- </span> -->
       <div class="select">
         <select @change="switchLanguage">
           <option
@@ -33,12 +35,18 @@
 <script>
 import debounce from "@/helpers/debounce";
 import { mapState } from "vuex";
+import Logo from "@/assets/img/leaf.svg";
+import SearchIcon from "@/assets/img/search.svg";
 export default {
+  components: {
+    Logo,
+    SearchIcon
+  },
   data() {
     return {
       showSearchField: false,
-      logo: require("@/assets/img/leaf.svg"),
-      searchIcon: require("@/assets/img/search.svg"),
+      // logo: require("@/assets/img/leaf.svg"),
+      // searchIcon: require("@/assets/img/search.svg"),
     };
   },
   computed: {
