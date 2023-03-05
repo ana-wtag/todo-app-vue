@@ -1,21 +1,20 @@
 <template>
-  <div class="loader-overlay" :style="searchLoading ? {'height': '100vh'} : {'height': '100%'}">
+  <div class="loader-overlay">
     <LoaderIcon class="loader-icon"/>
   </div>
 </template>
 
 <script>
 import LoaderIcon from "@/assets/img/loader.svg"
-import { mapState } from "vuex";
 export default {
   components: {
     LoaderIcon
   },
-  computed: {
-    ...mapState("todo", [
-      "searchLoading",
-    ]),
-  }
+  data() {
+    return {
+      
+    };
+  },
 };
 </script>
 
