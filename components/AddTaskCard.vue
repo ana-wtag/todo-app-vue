@@ -1,9 +1,9 @@
 <template>
   <div class="card" v-if="showForm">
     <CardLoader v-if="loading" />
-    <textarea v-model="todoText"></textarea>
+    <textarea v-model="todoText" id="task-title-input"></textarea>
     <div class="card-footer">
-      <button @click="addTask" :style="{ 'margin-right': '19px' }">
+      <button @click="addTask" :style="{ 'margin-right': '19px' }" id="add-task-button">
         {{ $t("task.add") }}
       </button>
       <DeleteIcon class="delete-icon" @click="clearField" />
@@ -34,13 +34,12 @@ export default {
     showAlert(text, classNm) {
       swal(text, {
         buttons: false,
-        timer: 3000,
         className: classNm,
       });
     },
     validate() {
       if (!this.todoText) {
-        this.showAlert("Title is required!", "error");
+        this.showAlert(`${this.$t("validation.title.required")}`, "error");
         return false;
       }
       const sanitizedInput = this.todoText.replace(/<[^>]+>/g, '');
@@ -57,7 +56,7 @@ export default {
           completedIn: null,
         };
         await this.$store.dispatch("todo/addTask", todo);
-        this.showAlert("Changes are saved successfully", "success");
+        this.showAlert(`${this.$t("validation.save.success")}`, "success");
         this.$store.dispatch("todo/resetSearch", "");
         this.$store.dispatch("todo/setCurrentFilter", constants.ALL);
         this.todoText = "";

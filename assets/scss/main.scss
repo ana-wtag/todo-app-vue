@@ -71,7 +71,7 @@ div#__layout {
   position: absolute;
   content: "\2713";
   top: 37%;
-  left: 12%;
+  left: 44px;
   width: 5px;
   height: 5px;
   transform: translate(-50%, -50%);
@@ -117,7 +117,7 @@ div#__layout {
   background-color: #0bc375;
   border-radius: $border-radius;
   position: absolute;
-  height: 55px;
+  height: 60px;
   top: 90px;
   left: 0px;
   right: 0px;
@@ -128,6 +128,8 @@ div#__layout {
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
+  display: block;
+  margin-left: 56px;
 }
 .swal-text:first-child {
   margin-top: 16px;
@@ -175,6 +177,9 @@ section.task-container {
   }
   .success::after {
     display: none;
+  }
+  .swal-text {
+    margin-left: 0;
   }
 }
 

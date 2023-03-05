@@ -15,5 +15,7 @@
   "general.more": "Suite",
   "general.show": "Spectacle",
   "general.less": "Moins",
-  "task.emptyText": "Vous n'avez ajouté aucune tâche. Veuillez en ajouter un."
+  "task.emptyText": "Vous n'avez ajouté aucune tâche. Veuillez en ajouter un.",
+  "validation.title.required": "Le titre est obligatoire !",
+  "validation.save.success": "Les modifications sont enregistrées avec succès!"
 }
