@@ -1,21 +1,15 @@
 <template>
   <nav>
     <div class="nav-left">
-      <!-- <div class="logo"> -->
-        <!-- <img :src="logo" /> -->
-        <Logo class="logo"/>
-        <span>Todos</span>
-      <!-- </div> -->
+      <Logo class="logo" />
+      <span>Todos</span>
     </div>
     <div class="nav-right">
       <Transition>
         <input type="text" v-model="searchKey" v-if="showSearchField" />
       </Transition>
       <!-- for search -->
-      <!-- <span class="search-icon" @click="onSearchIconClick"> -->
-        <!-- <img :src="searchIcon" /> -->
-        <SearchIcon class="search-icon" @click="onSearchIconClick"/>
-      <!-- </span> -->
+      <SearchIcon class="search-icon" @click="onSearchIconClick" />
       <div class="select">
         <select @change="switchLanguage">
           <option
@@ -40,13 +34,11 @@ import SearchIcon from "@/assets/img/search.svg";
 export default {
   components: {
     Logo,
-    SearchIcon
+    SearchIcon,
   },
   data() {
     return {
       showSearchField: false,
-      // logo: require("@/assets/img/leaf.svg"),
-      // searchIcon: require("@/assets/img/search.svg"),
     };
   },
   computed: {
@@ -92,7 +84,7 @@ export default {
 }
 
 .nav-right input,
-.nav-right span {
+.nav-right .search-icon {
   margin-right: 19px;
 }
 .nav-right input {
@@ -107,7 +99,7 @@ nav {
   justify-content: space-between;
 }
 
-.logo span {
+.nav-left span {
   font-size: 36px;
   font-weight: 700;
   color: #7a8dfd;
@@ -125,7 +117,7 @@ nav {
 /** Responsive Design **/
 // tablet screen
 @media only screen and (max-width: 769px) {
-  .logo span {
+  .nav-left span {
     font-size: 25px;
   }
 }
@@ -133,13 +125,13 @@ nav {
 // mobile scren
 @media only screen and (max-width: 481px) {
   .nav-right input,
-  .nav-right span {
+  .nav-right .search-icon {
     margin-right: 2px;
   }
   .nav-right {
     width: 100%;
   }
-  .logo span {
+  .nav-left span {
     display: none;
   }
 }

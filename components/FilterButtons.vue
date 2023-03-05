@@ -111,7 +111,7 @@ export default {
     font-size: 14px;
   }
 }
-@media only screen and (max-width: 321px) {
+@media only screen and (max-width: 376px) {
   .filter-wrapper .select {
     display: block;
   }
