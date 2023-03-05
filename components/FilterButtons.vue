@@ -4,6 +4,7 @@
       <button
         @click="showAll"
         :class="{ 'is-active': currentFilter === constants.ALL }"
+        data-testid="all-filter-button"
       >
         {{ $t("general.all") }}
       </button>
@@ -21,7 +22,7 @@
       </button>
     </div>
     <div class="select">
-      <select @change="swicthFilter">
+      <select @change="swicthFilter" data-testid="change-filter-button">
         <option
           :selected="currentFilter === constants.ALL"
           :value="constants.ALL"
