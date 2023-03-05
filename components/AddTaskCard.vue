@@ -1,12 +1,12 @@
 <template>
   <div class="card" v-if="showForm">
     <CardLoader v-if="loading" />
-    <textarea v-model="todoText" id="task-title-input"></textarea>
+    <textarea v-model="todoText" data-testid="task-title-input"></textarea>
     <div class="card-footer">
-      <button @click="addTask" :style="{ 'margin-right': '19px' }" id="add-task-button">
+      <button @click="addTask" :style="{ 'margin-right': '19px' }" data-testid="add-task-button">
         {{ $t("task.add") }}
       </button>
-      <DeleteIcon class="delete-icon" @click="clearField" />
+      <DeleteIcon class="delete-icon" @click="clearField" data-testid="delete-task-form"/>
     </div>
   </div>
 </template>
