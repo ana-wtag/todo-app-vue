@@ -67,16 +67,6 @@ div#__layout {
   position: relative;
 }
 
-.success::after {
-  position: absolute;
-  content: "\2713";
-  top: 37%;
-  left: 44px;
-  width: 5px;
-  height: 5px;
-  transform: translate(-50%, -50%);
-}
-
 .error {
   background: #e85f5f !important;
   font-family: "Roboto";
@@ -121,7 +111,8 @@ div#__layout {
   top: 90px;
   left: 0px;
   right: 0px;
-  width: 390px;
+  //width: 390px;
+  display: inline-block;
 }
 .swal-text {
   color: white;

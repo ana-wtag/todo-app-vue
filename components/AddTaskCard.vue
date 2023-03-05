@@ -35,6 +35,7 @@ export default {
       swal(text, {
         buttons: false,
         className: classNm,
+        timer: 3000
       });
     },
     validate() {
