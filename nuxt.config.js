@@ -46,18 +46,18 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/i18n','sweetalert'],
+  modules: ['@nuxtjs/i18n','sweetalert','nuxt-svg-loader'],
   i18n: {
     locales: [
       {
         code: 'en',
         file: 'en.json',
-        name: 'English'
+        name: 'en'
       },
       {
         code: 'fr',
         file: 'fr.json',
-        name: 'French'
+        name: 'fr'
       },
     ],
     langDir: 'locales/',

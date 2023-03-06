@@ -1,4 +1,5 @@
 {
+  "logo.text": "Todo",
   "task.create": "Create",
   "general.all": "All",
   "general.incomplete": "Incomplete",
@@ -14,5 +15,8 @@
   "general.load": "Load",
   "general.more": "More",
   "general.show": "Show",
-  "general.less": "Less"
+  "general.less": "Less",
+  "task.emptyText": "You didn't add any task. Please add one.",
+  "validation.title.required": "Title is required!",
+  "validation.save.success": "Changes are saved successfully!"
 }

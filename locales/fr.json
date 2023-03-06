@@ -1,4 +1,5 @@
 {
+  "logo.text": "Todo",
   "task.create": "Créer",
   "general.all": "Toute",
   "general.incomplete": "Incomplète",
@@ -14,5 +15,8 @@
   "general.load": "Charge",
   "general.more": "Suite",
   "general.show": "Spectacle",
-  "general.less": "Moins"
+  "general.less": "Moins",
+  "task.emptyText": "Vous n'avez ajouté aucune tâche. Veuillez en ajouter un.",
+  "validation.title.required": "Le titre est obligatoire !",
+  "validation.save.success": "Les modifications sont enregistrées avec succès!"
 }

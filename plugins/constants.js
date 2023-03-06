@@ -1,14 +1,15 @@
 const ALL = "All"
 const INCOMPLETE = "Incomplete"
 const COMPLETE = "Complete"
-const LIMIT = 9
+const LIMIT = 3
 const TIMER = 800
-
+const MAXLENGTH = 78
     
 export default {
   ALL: ALL,
   INCOMPLETE: INCOMPLETE,
   COMPLETE: COMPLETE,
   LIMIT: LIMIT,
-  TIMER: TIMER
+  TIMER: TIMER,
+  MAXLENGTH: MAXLENGTH
 }

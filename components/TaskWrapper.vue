@@ -2,9 +2,18 @@
   <section class="task-container">
     <div class="task-area">
       <AddTaskCard />
-      <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
+      <template v-if="paginatedList.length > 0">
+        <Todo v-for="todo in paginatedList" :key="todo.id" :todoItem="todo" />
+      </template>
+      <template v-else>
+        <div class="empty-task-placeholder">
+          <EmptyTaskPlaceholder class="" />
+          <div class="empty-task-placeholder-text">
+            {{ $t("task.emptyText") }}
+          </div>
+        </div>
+      </template>
     </div>
-
     <div class="load-btn">
       <button v-if="isLoadMoreState || isShowLessState" @click="onLoadBtnClick">
         {{ btnText }}
@@ -16,7 +25,15 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import filters from "@/plugins/constants";
+import EmptyTaskPlaceholder from "@/assets/img/add-files.svg";
+import AddTaskCard from "@/components/AddTaskCard";
+import Todo from "@/components/Todo";
 export default {
+  components: {
+    EmptyTaskPlaceholder,
+    AddTaskCard,
+    Todo
+  },
   data() {
     return {
       firstIndex: 0,
@@ -24,16 +41,21 @@ export default {
     };
   },
   computed: {
-    ...mapState("todo", ["limit","currentFilter", "todoList", "searchText","searchLoading"]),
-    ...mapGetters("todo", [
-      'getCompletedTaskList',
-      'getIncompletedTaskList'
+    ...mapState("todo", [
+      "limit",
+      "currentFilter",
+      "todoList",
+      "searchText",
+      "searchLoading",
     ]),
+    ...mapGetters("todo", ["getCompletedTaskList", "getIncompletedTaskList"]),
     list() {
-      if(this.searchText) {
-        return this.paginatedCurrentFilter.filter(item => item.text.toLowerCase().includes(this.searchText.toLowerCase()))
+      if (this.searchText) {
+        return this.paginatedCurrentFilter.filter((item) =>
+          item.text.toLowerCase().includes(this.searchText.toLowerCase())
+        );
       }
-      return this.paginatedCurrentFilter
+      return this.paginatedCurrentFilter;
     },
     paginatedCurrentFilter() {
       switch (this.currentFilter) {
@@ -71,8 +93,8 @@ export default {
   },
   watch: {
     currentFilter() {
-      this.lastIndex = this.limit
-    }
+      this.lastIndex = this.limit;
+    },
   },
   methods: {
     onLoadBtnClick() {
@@ -81,7 +103,7 @@ export default {
           this.lastIndex + this.limit,
           this.list.length
         );
-        return
+        return;
       }
       if (this.isShowLessState) {
         this.lastIndex = this.limit;
@@ -99,5 +121,37 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+.load-btn {
+  text-align: center;
+  margin-top: 66px;
+}
+.load-btn button {
+  height: 36px;
+  width: 117px;
+  background: #32394b;
+  border: 1px solid #dde2ff;
+  border-radius: 5px;
+  color: white;
+}
+.empty-task-placeholder {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  top:50%;
+}
+.empty-task-placeholder-text {
+  font-weight: 700px;
+  font-size: 24px;
+}
+
+// mobile scren
+@media only screen and (max-width: 321px) {
+  .empty-task-placeholder-text {
+    font-size: 20px;
+  }
 }
 </style>

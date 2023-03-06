@@ -1,0 +1,56 @@
+<template>
+  <div class="splash-screen">
+    <div class="sp-wrapper">
+      <SPLogo class="sp-logo"/>
+      <span data-testid="todo-text" class="project-title">{{ $t("logo.text") }}</span>
+    </div>
+  </div>
+</template>
+<script>
+import SPLogo from "@/assets/img/leaf-lg.svg";
+export default {
+  components: {
+    SPLogo
+  },
+  name: "SplashScreen",
+  data() {
+    return {
+    };
+  },
+};
+</script>
+<style lang="scss">
+.splash-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: #f8f9ff;
+  animation: fade 2s linear;
+}
+.project-title {
+  font-size: 96px;
+  font-weight: 700;
+  color: #7a8dfd;
+  text-transform: capitalize;
+  font-family: Roboto;
+}
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// mobile scren
+@media only screen and (max-width: 426px) {
+  .sp-wrapper {
+    padding: 10%;
+    text-align: center;
+  }
+}
+</style>
