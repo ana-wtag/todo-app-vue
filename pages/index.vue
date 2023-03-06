@@ -1,20 +1,22 @@
 <template>
   <section>
-    <div class="section-head">
-      <h4>{{ $t("task.add") }}</h4>
-    </div>
-    <div class="section-body">
-      <CardLoader v-if="searchLoading" />
-      <div class="btn-area">
-        <button @click="showCreateForm" class="create-btn">
-          <span>{{ $t("task.create") }}</span>
-        </button>
-        <div class="filter-area">
-          <FilterButtons />
-        </div>
+    <CardLoader v-if="searchLoading" />
+    <template v-else>
+      <div class="section-head">
+        <h4>{{ $t("task.add") }}</h4>
       </div>
-      <TaskWrapper />
-    </div>
+      <div class="section-body">
+        <div class="btn-area">
+          <button @click="showCreateForm" class="create-btn">
+            <span>{{ $t("task.create") }}</span>
+          </button>
+          <div class="filter-area">
+            <FilterButtons />
+          </div>
+        </div>
+        <TaskWrapper />
+      </div>
+  </template>
   </section>
 </template>
 
