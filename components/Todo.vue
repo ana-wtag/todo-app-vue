@@ -2,7 +2,7 @@
   <div class="card">
     <CardLoader v-if="todoItem.loading" />
     <template v-if="isEdit">
-      <textarea v-model="taskText"></textarea>
+      <textarea v-model="taskText" data-testid="edit-task-input"></textarea>
     </template>
     <template v-else>
       <div class="card-header" :class="{ 'mark-done': todoItem.done }">
@@ -18,6 +18,7 @@
         <button
           v-if="isEdit"
           @click="onSave"
+          data-testid="save-edit-task"
           :style="{ 'margin-right': '19px' }"
         >
           {{ $t("task.save") }}
@@ -61,11 +62,13 @@ import { mapState } from "vuex";
 import TickIcon from "@/assets/img/tick.svg";
 import PencilIcon from "@/assets/img/pencil.svg";
 import DeleteIcon from "@/assets/img/delete.svg";
+import CardLoader from "@/components/CardLoader";
 export default {
   components: {
     TickIcon,
     PencilIcon,
     DeleteIcon,
+    CardLoader
   },
   props: {
     todoItem: {

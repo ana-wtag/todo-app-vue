@@ -26,9 +26,13 @@
 import { mapState, mapGetters } from "vuex";
 import filters from "@/plugins/constants";
 import EmptyTaskPlaceholder from "@/assets/img/add-files.svg";
+import AddTaskCard from "@/components/AddTaskCard";
+import Todo from "@/components/Todo";
 export default {
   components: {
     EmptyTaskPlaceholder,
+    AddTaskCard,
+    Todo
   },
   data() {
     return {

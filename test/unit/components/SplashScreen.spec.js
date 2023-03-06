@@ -1,13 +1,12 @@
 import { describe, expect, it } from '@jest/globals'
 import { shallowMount } from '@vue/test-utils'
-import NavBar from '@/components/NavBar'
+import SplashScreen from '@/components/SplashScreen'
 import Vuex from 'vuex'
 import VueI18n from 'vue-i18n'
 import { todo } from '@/test/utils/storeHelper'
 import i18Mock from '~/test/utils/i18nMock'
 import localVue from '~/test/utils/vueInstanceFactory'
-import Logo from "@/assets/img/leaf.svg";
-import SearchIcon from "@/assets/img/search.svg";
+import SPLogo from "@/assets/img/leaf-lg.svg";
 
 let store
 
@@ -25,7 +24,7 @@ beforeEach(() => {
 })
 
 const wrapperFactory = (additionalData) => {
-    const mounted = shallowMount(NavBar, {
+    const mounted = shallowMount(SplashScreen, {
       localVue,
       i18n,
       store,
@@ -40,13 +39,16 @@ const wrapperFactory = (additionalData) => {
     return mounted
   }
 
-describe('@/components/NavBar', () => {
-  it("@/assets/img/leaf.svg", async () => {
+describe('@/components/SplashScreen', () => {
+    it("", async () => {
+        const wrapper = wrapperFactory();
+        expect(
+            wrapper.get('[data-testid="todo-text"]').text()
+          ).toBe(i18Mock.en['logo.text'])
+      });
+    
+  it("@/assets/img/leaf-lg.svg", async () => {
     const wrapper = wrapperFactory();
-    expect(wrapper.findComponent(Logo).exists()).toBe(true);
-  });
-  it("@/assets/img/search.svg", () => {
-    const wrapper = wrapperFactory();
-    expect(wrapper.findComponent(SearchIcon).exists()).toBe(true);
+    expect(wrapper.findComponent(SPLogo).exists()).toBe(true);
   });
 })

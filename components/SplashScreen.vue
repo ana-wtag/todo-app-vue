@@ -1,9 +1,8 @@
 <template>
   <div class="splash-screen">
     <div class="sp-wrapper">
-      <!-- <img :src="logo" class="sp-logo" /> -->
       <SPLogo class="sp-logo"/>
-      <span class="project-title">{{ $t("todos") }}</span>
+      <span data-testid="todo-text" class="project-title">{{ $t("logo.text") }}</span>
     </div>
   </div>
 </template>
@@ -16,7 +15,6 @@ export default {
   name: "SplashScreen",
   data() {
     return {
-      //logo: require("@/assets/img/leaf-lg.svg"),
     };
   },
 };

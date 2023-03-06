@@ -57,9 +57,9 @@ describe("@/components/AddTaskCard", () => {
       const addTaskButton = wrapper.find('[data-testid="add-task-button"]');
 
       await taskTitle.setValue("");
-      const validate = jest.spyOn(wrapper.vm, "validate");
+      const validateFnMock = jest.spyOn(wrapper.vm, "validate");
       await addTaskButton.trigger("click");
-      const response = validate();
+      const response = validateFnMock();
       expect(response).toBe(false);
     });
   });
